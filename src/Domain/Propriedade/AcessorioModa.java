@@ -9,4 +9,11 @@ public class AcessorioModa extends Propriedade {
         this.marca = marca;
         this.formal = formal;
     }
+
+    public void addAcessorioModa(Propriedade[] propriedades){
+        int i = 0;
+        while(this.propriedades.size() < 10 ) {
+            this.propriedades.add(propriedades[i]);
+        }
+    }
 }
