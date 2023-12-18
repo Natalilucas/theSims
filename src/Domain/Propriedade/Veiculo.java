@@ -12,4 +12,8 @@ public class Veiculo extends Propriedade {
         this.modelo = modelo;
     }
 
+    @Override
+    public void imprimirDetalhes() {
+        super.imprimirDetalhes();
+    }
 }

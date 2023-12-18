@@ -10,10 +10,8 @@ public class AcessorioModa extends Propriedade {
         this.formal = formal;
     }
 
-    public void addAcessorioModa(Propriedade[] propriedades){
-        int i = 0;
-        while(this.propriedades.size() < 10 ) {
-            this.propriedades.add(propriedades[i]);
-        }
+    @Override
+    public void imprimirDetalhes() {
+        super.imprimirDetalhes();
     }
 }
