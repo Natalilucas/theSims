@@ -19,4 +19,6 @@ public class VendaRepo {
     public ArrayList<Propriedade> getPropriedadesArray(){
         return propriedadesArray;
     }
+
+
 }

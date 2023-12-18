@@ -10,8 +10,5 @@ public class AcessorioModa extends Propriedade {
         this.formal = formal;
     }
 
-    @Override
-    public void imprimirDetalhes() {
-        super.imprimirDetalhes();
-    }
+
 }

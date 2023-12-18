@@ -7,7 +7,7 @@ public class TheSims {
     public TheSims() {
     }
 
-    public static void menuJog(){
+    public static void menuJogo(){
         Scanner sc = new Scanner(System.in);
         String opcao;
         System.out.println("Qual menu deseja ascender? ");

@@ -1,11 +1,46 @@
 tipo;nome;custo;estatuto;lotacaoMax;marca;modelo;formal
-Imovel;Quinta Tio Manel;90000;15;10;0;0;0
-Imovel;Vivenda Suburbios;68500;75;4;0;0;0
-Veiculo;Fiat 500;9900;40;0;Fiat;500;0
-Veiculo;Mercedes AMG 45;95000;100;0;Mercedes;AMG A45;0
 AcessorioModa;Oculos de Sol;300;20;0;Gucci;0;true
 AcessorioModa;Fato;2500;50;0;Hugo Boss;0;true
-Imovel;Apartamento T2;57500;60;3;0;0;0
-Veiculo;Ferrari SF90;400000;700;0;Ferrari;SF90;0
-AcessorioModa;Bon? do Boavista;5;1;0;Made in China;0;false
+AcessorioModa;Bone do Boavista;5;1;0;Made in China;0;false
 AcessorioModa;Sapatilhas de Corrida;50;3;0;Nikw;0;false
+AcessorioModa;Bolsa;60;87;0;Kate Spade;0;true
+AcessorioModa;Mala;100;10;0;Samsonite;0;true
+AcessorioModa;Jeans;200;5;0;Calvin Klein;0;false
+AcessorioModa;Blazer;900;70;0;Guess;0;true
+AcessorioModa;Brinco;645;34;0;Parfois;0;false
+AcessorioModa;Bolsa para notebook;50;50;0;Lenovo;0;true
+AcessorioModa;Scarpin;120;89;0;Arezzo;0;true
+AcessorioModa;Botas;500;12;0;Prego;0;false
+AcessorioModa;Vestido;65;55;0;C&A;0;false
+AcessorioModa;Relogio;1000;40;0;Apple;0;false
+AcessorioModa;Anel;100;30;0;Vivara;0;true
+Imovel;Quinta Tio Manel;90000;15;10;0;0;0
+Imovel;Vivenda Suburbios;68500;75;4;0;0;0
+Imovel;Apartamento T2;57500;60;3;0;0;0
+Imovel;Moradia T4;474000;52;10;0;0;0
+Imovel;Studio;99000;100;1;0;0;0
+Imovel;Loja r/c;60000;100;50;0;0;0
+Imovel;Apartamento T1;140000;300;2;0;0;0
+Imovel;Apartamento T3;230000;540;6;0;0;0
+Imovel;Moradia T2;40000;300;4;0;0;0
+Imovel;Vivenda Geres;54000;100;10;0;0;0
+Imovel;Apartamento T1 +1;199000;300;1;0;0;0
+Imovel;Moradia T3;329000;100;3;0;0;0
+Imovel;Studio+Escritorio;120000;500;1;0;0;0
+Imovel;Quinta Asprela;600000;40;14;0;0;0
+Veiculo;Fiat 500;9900;40;0;Fiat;500;0
+Veiculo;Mercedes AMG 45;95000;100;0;Mercedes;AMG A45;0
+Veiculo;Ferrari SF90;400000;700;0;Ferrari;SF90;0
+Veiculo;Volvo V40;10500;40;;Volvo;V40;0
+Veiculo;Volvo XC40;45999;100;;Volvo;XC40;0
+Veiculo;Mercedes A180;15599;85;;Mercedes;A180;0
+Veiculo;Mercedes B;8999;10;;Mercedes;B;0
+Veiculo;BMW 116i;14080;99;;BMW;116i;0
+Veiculo;BMW 320d;23900;64;;BMW;320d;0
+Veiculo;Peugeot 508;22000;30;;Peugeot;508;0
+Veiculo;Peugeot 2008;25000;45;;Peugeot;2008;0
+Veiculo;Seat leon;13000;70;;Seat;leon;0
+Veiculo;Cupra Leon;32000;80;;Cupra;Leon;0
+Veiculo;Honda Jazz;14500;50;;Honda;Jazz;0
+Veiculo;Honda Civic;18999;60;;Honda;Civic;0
+Veiculo;Kia Soul;20000;70;;Kia;Soul;0

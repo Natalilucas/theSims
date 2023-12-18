@@ -9,8 +9,5 @@ public class Imovel extends Propriedade {
         this.capacidadePessoas = capacidadePessoas;
     }
 
-    @Override
-    public void imprimirDetalhes() {
-        super.imprimirDetalhes();
-    }
+
 }

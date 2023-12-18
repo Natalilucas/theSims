@@ -53,8 +53,8 @@ public class CSVVendasReader {
         }
 
         return propriedadesVenda;
-    }
 
+    }
 
     public static void imprimirFicheiro(String caminho) throws FileNotFoundException {
         Scanner fileScanner = new Scanner(new File(caminho));
@@ -68,6 +68,5 @@ public class CSVVendasReader {
     }
 
 
-
-    }
+}
 
