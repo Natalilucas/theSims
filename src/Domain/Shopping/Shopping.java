@@ -26,7 +26,7 @@ public class Shopping {
 
     public void Vender(Pessoa pessoa){
         Scanner input = new Scanner(System.in);
-        int opcao = 0;
+        int opcao = 0, opcaoCompra = 0;
         System.out.println(" ----------------------------- WINTERFELL MALL -------------------------");
         //colocar um art de um shopping
         System.out.println("Em qual seção quer comprar: 1 - Imobiliária | 2 - Stand | 3 - Acessórios");
@@ -53,15 +53,63 @@ public class Shopping {
                 }
 
                 for (i = 0; i < arrayIndexAleatorio.size(); i++) {
-                    System.out.println("Lista de imóveis" + i + ": ");
+                    System.out.println("Lista de imóveis " + i + " : ");
                     this.coisasParaComprar.get(arrayIndexAleatorio.get(i)).imprimirDetalhes();
                 }
 
+
+                System.out.println("Qual item deseja comprar? ");
+                opcaoCompra = input.nextInt();
+
+                if(opcaoCompra == i){
+                    System.out.println("Você quer comprar" + coisasParaComprar.get(opcaoCompra));
+                   // if(pessoa.getDinheiro() < coisasParaComprar.get(i));
+                }
+
+
              break;
             case 2:
+                System.out.println("**************************** Bravosí Car *****************************");
+                System.out.println("Lista de carros: ");
+                ArrayList<Integer> arrayIndexAleatorio1 = new ArrayList<>();
+
+                while(arrayIndexAleatorio1.size() < 10){
+                    indexAleatorio = random.nextInt(0, this.coisasParaComprar.size());
+                    if (arrayIndexAleatorio1.size() == 0) {
+                        arrayIndexAleatorio1.add(indexAleatorio);
+                    }
+
+                    if(!arrayIndexAleatorio1.contains(indexAleatorio) && coisasParaComprar.get(indexAleatorio) instanceof Veiculo) {
+                        arrayIndexAleatorio1.add(indexAleatorio);
+                    }
+                }
+
+                for (i = 0; i < arrayIndexAleatorio1.size(); i++) {
+                    System.out.println("Lista de imóveis " + i + " : ");
+                    this.coisasParaComprar.get(arrayIndexAleatorio1.get(i)).imprimirDetalhes();
+                }
 
                 break;
             case 3:
+                System.out.println("**************************** Drotaki Clothes *****************************");
+                System.out.println("Carro: ");
+                ArrayList<Integer> arrayIndexAleatorio2 = new ArrayList<>();
+
+                while(arrayIndexAleatorio2.size() < 10){
+                    indexAleatorio = random.nextInt(0, this.coisasParaComprar.size());
+                    if (arrayIndexAleatorio2.size() == 0) {
+                        arrayIndexAleatorio2.add(indexAleatorio);
+                    }
+
+                    if(!arrayIndexAleatorio2.contains(indexAleatorio) && coisasParaComprar.get(indexAleatorio) instanceof AcessorioModa) {
+                        arrayIndexAleatorio2.add(indexAleatorio);
+                    }
+                }
+
+                for (i = 0; i < arrayIndexAleatorio2.size(); i++) {
+                    System.out.println("Peça " + i + " : ");
+                    this.coisasParaComprar.get(arrayIndexAleatorio2.get(i)).imprimirDetalhes();
+                }
 
                 break;
         }

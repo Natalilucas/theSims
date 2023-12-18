@@ -10,5 +10,10 @@ public class AcessorioModa extends Propriedade {
         this.formal = formal;
     }
 
-
+    @Override
+    public void imprimirDetalhes() {
+        super.imprimirDetalhes();
+        System.out.println(" Marca " + this.marca + "| É formal " + this.formal);
+        System.out.println();
+    }
 }
