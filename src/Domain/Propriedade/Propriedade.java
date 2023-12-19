@@ -12,6 +12,18 @@ public class Propriedade {
         this.estatuto = estatuto;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public double getCusto() {
+        return custo;
+    }
+
+    public int getEstatuto() {
+        return estatuto;
+    }
+
     public void imprimirDetalhes(){
         System.out.println("Nome: "+ this.nome + "\t" + "| Custo: " + this.custo + " | Estatuto: " + this.estatuto);
     }

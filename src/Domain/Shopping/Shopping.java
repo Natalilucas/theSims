@@ -27,6 +27,8 @@ public class Shopping {
     public void Vender(Pessoa pessoa){
         Scanner input = new Scanner(System.in);
         int opcao = 0, opcaoCompra = 0;
+        int itemComprar;
+
         System.out.println(" ----------------------------- WINTERFELL MALL -------------------------");
         //colocar um art de um shopping
         System.out.println("Em qual seção quer comprar: 1 - Imobiliária | 2 - Stand | 3 - Acessórios");
@@ -41,7 +43,7 @@ public class Shopping {
                 System.out.println("Veja nossa lista de imóveis: ");
                 ArrayList<Integer> arrayIndexAleatorio = new ArrayList<>();
 
-                while(arrayIndexAleatorio.size() < 10){
+                while(arrayIndexAleatorio.size() <= 10){
                     indexAleatorio = random.nextInt(0, this.coisasParaComprar.size());
                     if (arrayIndexAleatorio.size() == 0) {
                         arrayIndexAleatorio.add(indexAleatorio);
@@ -58,16 +60,25 @@ public class Shopping {
                 }
 
 
-                System.out.println("Qual item deseja comprar? ");
+                System.out.println("Deseja realizar alguma compra? \n 1 - Sim | 2 - Não");
                 opcaoCompra = input.nextInt();
 
-                if(opcaoCompra == i){
-                    System.out.println("Você quer comprar" + coisasParaComprar.get(opcaoCompra));
-                   // if(pessoa.getDinheiro() < coisasParaComprar.get(i));
+                if(opcaoCompra == 1){
+                    System.out.println("Qual item da nossa lista deseja comprar ? ");
+                    itemComprar = input.nextInt();
+                    System.out.println(itemComprar);
+                    System.out.print("O item que deseja comprar ");
+                    this.coisasParaComprar.get(arrayIndexAleatorio.get(itemComprar)).imprimirDetalhes();
+                    System.out.println("A compra será realizada mediante dinheiro disponível ..");
+                    this.coisasParaComprar.remove(itemComprar);
+                    System.out.println("item retirado da lista de imoveis");
+                    this.coisasParaComprar.get(arrayIndexAleatorio.get(i)).imprimirDetalhes();
                 }
 
 
-             break;
+
+
+                break;
             case 2:
                 System.out.println("**************************** Bravosí Car *****************************");
                 System.out.println("Lista de carros: ");
@@ -88,8 +99,9 @@ public class Shopping {
                     System.out.println("Lista de imóveis " + i + " : ");
                     this.coisasParaComprar.get(arrayIndexAleatorio1.get(i)).imprimirDetalhes();
                 }
-
                 break;
+
+
             case 3:
                 System.out.println("**************************** Drotaki Clothes *****************************");
                 System.out.println("Carro: ");
@@ -110,15 +122,12 @@ public class Shopping {
                     System.out.println("Peça " + i + " : ");
                     this.coisasParaComprar.get(arrayIndexAleatorio2.get(i)).imprimirDetalhes();
                 }
-
                 break;
+
+
         }
 
     }
-
-
-
-
 }
 
 
