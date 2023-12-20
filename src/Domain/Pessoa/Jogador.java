@@ -1,9 +1,8 @@
 package Domain.Pessoa;
 
-import Domain.Objetivo;
+import Domain.Enum.Objetivo;
 import Domain.Propriedade.Propriedade;
 
-import java.sql.DriverPropertyInfo;
 import java.util.ArrayList;
 
 public class Jogador extends Pessoa {
@@ -31,31 +30,58 @@ public class Jogador extends Pessoa {
         this.familia = new ArrayList<>();
     }
 
-    public void addAPropriedade(Propriedade novaPropriedade){
-        this.propriedades.add(novaPropriedade);
+    public Objetivo getObjetivoVida() {
+        return objetivoVida;
+    }
+
+    public Profissao getProfissaoAtual() {
+        return profissaoAtual;
+    }
+
+    public int getNecessidadeSono() {
+        return necessidadeSono;
+    }
+
+    public int getNecessidadeRefeicao() {
+        return necessidadeRefeicao;
+    }
+
+    public int getNecessidadeSocial() {
+        return necessidadeSocial;
+    }
+
+    public int getEstatuto() {
+        return estatuto;
+    }
+
+    public int getEducacao() {
+        return educacao;
     }
 
 
 
-    public void mostrarDetalhes(){
-        System.out.println("Seu jogador: " + this.nome);
-        System.out.println(" | Saldo bancário:" + this.dinheiro);
+    public void addAPropriedade(Propriedade novaPropriedade) {
+        this.propriedades.add(novaPropriedade);
+    }
+
+
+    public void mostrarDetalhes() {
+        System.out.println("Your player: " + this.nome);
+        System.out.println(" | Golden bank:" + this.dinheiro);
         profissaoAtual.imprimirDetalhes();
         System.out.println(" | Necessidade de Sono: " + this.necessidadeSono);
         System.out.println(" | Necessidade de Refeição:" + this.necessidadeRefeicao);
         System.out.println(" | Necessidade Social: " + this.necessidadeSocial);
-        System.out.println(" | Estatuto: " + this.estatuto );
+        System.out.println(" | Estatuto: " + this.estatuto);
         System.out.println(" | Educação: " + this.educacao);
 
-        for(Propriedade propriedadeAtual: propriedades ){
+        for (Propriedade propriedadeAtual : propriedades) {
             propriedadeAtual.imprimirDetalhes();
         }
 
-        for(NPC npc: familia){
+        for (NPC npc : familia) {
             npc.imprimirDetalhes();
         }
-
-
 
 
     }
