@@ -1,5 +1,6 @@
 package Domain.Shopping;
 
+import Domain.Pessoa.Jogador;
 import Domain.Pessoa.Pessoa;
 import Domain.Propriedade.AcessorioModa;
 import Domain.Propriedade.Imovel;
@@ -24,10 +25,11 @@ public class Shopping {
         return coisasParaComprar;
     }
 
-    public void Vender(Pessoa pessoa){
+    public void vender(Jogador jogador){
         Scanner input = new Scanner(System.in);
         int opcao = 0, opcaoCompra = 0;
         int itemComprar;
+        boolean realizouCompra = false;
 
         System.out.println(" ----------------------------- WINTERFELL MALL -------------------------");
         //colocar um art de um shopping
@@ -46,9 +48,11 @@ public class Shopping {
                 while(arrayIndexAleatorio.size() < 10){ // Este array recebe posições aleatorias de 0 a 9.
                     indexAleatorio = random.nextInt(0, this.coisasParaComprar.size()); // recupera atraves da posição aleatorio e preenche o array aleatorio
 
-                    if (arrayIndexAleatorio.size() == 0) { //Garante que a primeira posição do array está preenchida com o primeiro index aleatorio
+                    if (arrayIndexAleatorio.size() == 0 && coisasParaComprar.get(indexAleatorio) instanceof Imovel) {
                         arrayIndexAleatorio.add(indexAleatorio);
                     }
+                    //Garante que a primeira posição do array está preenchida com o primeiro index aleatorio
+
 
                     //verifica que o index ainda está vazio, senão add.
                     if(!arrayIndexAleatorio.contains(indexAleatorio) && coisasParaComprar.get(indexAleatorio) instanceof Imovel) {
@@ -57,7 +61,7 @@ public class Shopping {
                 }
 
                 for (i = 0; i < arrayIndexAleatorio.size(); i++) {
-                    System.out.println("Lista de imóveis " + (i+1) + " : ");
+                    System.out.println("Lista de imóveis " + i + " : ");
                     this.coisasParaComprar.get(arrayIndexAleatorio.get(i)).imprimirDetalhes();
                 }
 
@@ -68,15 +72,19 @@ public class Shopping {
                 if(opcaoCompra == 1){
                     System.out.println("Qual item da nossa lista deseja comprar ? ");
                     itemComprar = input.nextInt();
-                    System.out.println(itemComprar);
-                    System.out.print("O item que deseja comprar ");
-                    this.coisasParaComprar.get(arrayIndexAleatorio.get(itemComprar)).imprimirDetalhes();
-                    System.out.println("A compra será realizada mediante dinheiro disponível ..");
-
-
-                    this.coisasParaComprar.remove(itemComprar);
-                    System.out.println("item retirado da lista de imoveis");
-                    this.coisasParaComprar.get(arrayIndexAleatorio.get(i)).imprimirDetalhes();
+                    System.out.print("O item que deseja comprar: ");
+                    //this.coisasParaComprar.get(itemComprar).imprimirDetalhes();
+                    System.out.println(this.coisasParaComprar.get(arrayIndexAleatorio.get(itemComprar)).getNome());  //Imprimir os detalhes do item que o cliente quer comprar
+                    if(this.coisasParaComprar.get(arrayIndexAleatorio.get(itemComprar)).getCusto() <= jogador.getDinheiro()){
+                        jogador.addAPropriedade(this.coisasParaComprar.get(arrayIndexAleatorio.get(itemComprar)));
+                        this.coisasParaComprar.remove(itemComprar);
+                        realizouCompra = true;
+                        if(realizouCompra){
+                            System.out.println("item adicionado a sua lista de imóveis");
+                        }
+                    } else {
+                        System.out.println("Xiiiii, não tens dinheiro suficiente para esta compra. Seu saldo é: " + jogador.getDinheiro());
+                    }
                 }
 
 
@@ -100,9 +108,33 @@ public class Shopping {
                 }
 
                 for (i = 0; i < arrayIndexAleatorio1.size(); i++) {
-                    System.out.println("Lista de imóveis " + i + " : ");
+                    System.out.println("Lista de veiculos " + i + " : ");
                     this.coisasParaComprar.get(arrayIndexAleatorio1.get(i)).imprimirDetalhes();
                 }
+
+
+                System.out.println("Deseja realizar alguma compra? \n 1 - Sim | 2 - Não");
+                opcaoCompra = input.nextInt();
+
+                if(opcaoCompra == 1){
+                    System.out.println("Qual item da nossa lista deseja comprar ? ");
+                    itemComprar = input.nextInt();
+                    System.out.print("O item que deseja comprar: ");
+
+                    System.out.println(this.coisasParaComprar.get(arrayIndexAleatorio1.get(itemComprar)).getNome());  //Imprimir os detalhes do item que o cliente quer comprar
+                    if(this.coisasParaComprar.get(arrayIndexAleatorio1.get(itemComprar)).getCusto() <= jogador.getDinheiro()){
+                        jogador.addAPropriedade(this.coisasParaComprar.get(arrayIndexAleatorio1.get(itemComprar)));
+                        this.coisasParaComprar.remove(itemComprar);
+                        realizouCompra = true;
+                        if(realizouCompra){
+                            System.out.println("item adicionado a sua lista de veiculos");
+                        }
+
+                    } else {
+                        System.out.println("Xiiiii, não tens dinheiro suficiente para esta compra. Seu saldo é: " + jogador.getDinheiro());
+                    }
+                }
+
                 break;
 
 
@@ -126,6 +158,29 @@ public class Shopping {
                     System.out.println("Peça " + i + " : ");
                     this.coisasParaComprar.get(arrayIndexAleatorio2.get(i)).imprimirDetalhes();
                 }
+
+                System.out.println("Deseja realizar alguma compra? \n 1 - Sim | 2 - Não");
+                opcaoCompra = input.nextInt();
+
+                if(opcaoCompra == 1){
+                    System.out.println("Qual acessório deseja comprar ? ");
+                    itemComprar = input.nextInt();
+                    System.out.print("O item está disponível: ");
+
+                    System.out.println(this.coisasParaComprar.get(arrayIndexAleatorio2.get(itemComprar)).getNome());  //Imprimir os detalhes do item que o cliente quer comprar
+                    if(this.coisasParaComprar.get(arrayIndexAleatorio2.get(itemComprar)).getCusto() <= jogador.getDinheiro()){
+                        jogador.addAPropriedade(this.coisasParaComprar.get(arrayIndexAleatorio2.get(itemComprar)));
+                        this.coisasParaComprar.remove(itemComprar);
+                        realizouCompra = true;
+                        if(realizouCompra){
+                            System.out.println("item adicionado a sua lista de acessórios");
+                        }
+
+                    } else {
+                        System.out.println("Xiiiii, não tens dinheiro suficiente para esta compra. Seu saldo é: " + jogador.getDinheiro());
+                    }
+                }
+
                 break;
 
 

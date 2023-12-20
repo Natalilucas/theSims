@@ -6,13 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b36e65a7-be06-49c7-85e2-81559ea7270b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TheSimsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TheSimsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TheSimsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SimsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/Jogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/Jogador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/NPC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/Profissao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/Profissao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Shopping/Shopping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Shopping/Shopping.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/TheSims.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TheSims.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

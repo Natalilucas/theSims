@@ -9,10 +9,9 @@ public class TheSims {
 
     public static void menuJogo(){
         Scanner sc = new Scanner(System.in);
-        String opcao;
-        System.out.println("Qual menu deseja ascender? ");
-        opcao = sc.next();
 
 
     }
+
+
 }

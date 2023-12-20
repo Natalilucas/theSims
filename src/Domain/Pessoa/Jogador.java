@@ -18,7 +18,7 @@ public class Jogador extends Pessoa {
     private ArrayList<Propriedade> propriedades;
     private ArrayList<NPC> familia;
 
-    public Jogador(String nome, double dinheiro, Objetivo objetivoVida, Profissao profissaoAtual, int necessidadeSono, int necessidadeRefeicao, int necessidadeSocial, int estatuto, int educacao, ArrayList<Propriedade> propriedades, ArrayList<NPC> familia) {
+    public Jogador(String nome, double dinheiro, Objetivo objetivoVida, Profissao profissaoAtual, int necessidadeSono, int necessidadeRefeicao, int necessidadeSocial, int estatuto, int educacao) {
         super(nome, dinheiro);
         this.objetivoVida = objetivoVida;
         this.profissaoAtual = profissaoAtual;
@@ -27,8 +27,12 @@ public class Jogador extends Pessoa {
         this.necessidadeSocial = necessidadeSocial;
         this.estatuto = estatuto;
         this.educacao = educacao;
-        this.propriedades = propriedades;
-        this.familia = familia;
+        this.propriedades = new ArrayList<>();
+        this.familia = new ArrayList<>();
+    }
+
+    public void addAPropriedade(Propriedade novaPropriedade){
+        this.propriedades.add(novaPropriedade);
     }
 
 

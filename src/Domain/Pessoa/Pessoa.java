@@ -8,7 +8,6 @@ public class Pessoa {
     protected String nome;
     protected double dinheiro;
 
-    private ArrayList<Propriedade> minhasPropriedades = new ArrayList<>();
 
     public Pessoa(String nome, double dinheiro) {
         this.nome = nome;
@@ -23,19 +22,5 @@ public class Pessoa {
         return dinheiro;
     }
 
-    public ArrayList<Propriedade> getMinhasPropriedades() {
-        return minhasPropriedades;
-    }
 
-    public void setMinhasPropriedades(ArrayList<Propriedade> minhasPropriedades) {
-        this.minhasPropriedades = minhasPropriedades;
-    }
-
-    public void addAPropriedade(Propriedade novaPropriedade){
-        this.minhasPropriedades.add(novaPropriedade);
-        System.out.println("Propriedade adicionada!!! ");
-        for (Propriedade novasPropriedades: minhasPropriedades) {
-            System.out.println(novasPropriedades);
-        }
-    }
 }
