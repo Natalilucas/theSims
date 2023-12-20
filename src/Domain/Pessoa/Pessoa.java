@@ -5,8 +5,8 @@ import Domain.Propriedade.Propriedade;
 import java.util.ArrayList;
 
 public class Pessoa {
-    private String nome;
-    private double dinheiro;
+    protected String nome;
+    protected double dinheiro;
 
     private ArrayList<Propriedade> minhasPropriedades = new ArrayList<>();
 

@@ -41,21 +41,23 @@ public class Shopping {
             case 1:
                 System.out.println("**************************** Imobiliaria Brandon the Builder *****************************");
                 System.out.println("Veja nossa lista de imóveis: ");
-                ArrayList<Integer> arrayIndexAleatorio = new ArrayList<>();
+                ArrayList<Integer> arrayIndexAleatorio = new ArrayList<>(); //guarda as posicoes de index recebida
 
-                while(arrayIndexAleatorio.size() <= 10){
-                    indexAleatorio = random.nextInt(0, this.coisasParaComprar.size());
-                    if (arrayIndexAleatorio.size() == 0) {
+                while(arrayIndexAleatorio.size() < 10){ // Este array recebe posições aleatorias de 0 a 9.
+                    indexAleatorio = random.nextInt(0, this.coisasParaComprar.size()); // recupera atraves da posição aleatorio e preenche o array aleatorio
+
+                    if (arrayIndexAleatorio.size() == 0) { //Garante que a primeira posição do array está preenchida com o primeiro index aleatorio
                         arrayIndexAleatorio.add(indexAleatorio);
                     }
 
+                    //verifica que o index ainda está vazio, senão add.
                     if(!arrayIndexAleatorio.contains(indexAleatorio) && coisasParaComprar.get(indexAleatorio) instanceof Imovel) {
                         arrayIndexAleatorio.add(indexAleatorio);
                     }
                 }
 
                 for (i = 0; i < arrayIndexAleatorio.size(); i++) {
-                    System.out.println("Lista de imóveis " + i + " : ");
+                    System.out.println("Lista de imóveis " + (i+1) + " : ");
                     this.coisasParaComprar.get(arrayIndexAleatorio.get(i)).imprimirDetalhes();
                 }
 
@@ -70,6 +72,8 @@ public class Shopping {
                     System.out.print("O item que deseja comprar ");
                     this.coisasParaComprar.get(arrayIndexAleatorio.get(itemComprar)).imprimirDetalhes();
                     System.out.println("A compra será realizada mediante dinheiro disponível ..");
+
+
                     this.coisasParaComprar.remove(itemComprar);
                     System.out.println("item retirado da lista de imoveis");
                     this.coisasParaComprar.get(arrayIndexAleatorio.get(i)).imprimirDetalhes();

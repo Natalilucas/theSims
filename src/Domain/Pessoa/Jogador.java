@@ -3,6 +3,7 @@ package Domain.Pessoa;
 import Domain.Objetivo;
 import Domain.Propriedade.Propriedade;
 
+import java.sql.DriverPropertyInfo;
 import java.util.ArrayList;
 
 public class Jogador extends Pessoa {
@@ -30,13 +31,28 @@ public class Jogador extends Pessoa {
         this.familia = familia;
     }
 
-    public void mostrarDetalhes(){
-        System.out.println("Seu jogador: " + this.getNome()+ " \t Saldo bancário: " + this.getDinheiro() + " \t Profissão: " + this.profissaoAtual +
-                " \t Necessidade de Sono: " + this.necessidadeSono + " \t Necessidade de Refeição: " + this.necessidadeRefeicao + " \t Necessidade Social: " + this.necessidadeSocial
-                + " \t Estatuto: " + this.estatuto + " \t Educação: " + this.educacao);
 
-        //Fazer a função para trazer o array list.
-        System.out.println(" \t Profissão: " + this.propriedades + " \t Profissão: " + this.familia );
+
+    public void mostrarDetalhes(){
+        System.out.println("Seu jogador: " + this.nome);
+        System.out.println(" | Saldo bancário:" + this.dinheiro);
+        profissaoAtual.imprimirDetalhes();
+        System.out.println(" | Necessidade de Sono: " + this.necessidadeSono);
+        System.out.println(" | Necessidade de Refeição:" + this.necessidadeRefeicao);
+        System.out.println(" | Necessidade Social: " + this.necessidadeSocial);
+        System.out.println(" | Estatuto: " + this.estatuto );
+        System.out.println(" | Educação: " + this.educacao);
+
+        for(Propriedade propriedadeAtual: propriedades ){
+            propriedadeAtual.imprimirDetalhes();
+        }
+
+        for(NPC npc: familia){
+            npc.imprimirDetalhes();
+        }
+
+
+
 
     }
 }
