@@ -1,0 +1,13 @@
+nome;salarioDia;formal;estatuto;nivelMinEdu
+squire;200;true;60;500
+mistress;600;false;10;10
+mesterofcoin;1000;true;100;2000
+grandmaester;500;true;500;9000
+builder;230;false;3000;600
+warrior;540;false;450;3000
+archer;90;false;200;1000
+knight;2300;true;15000;400
+mago;450;false;1000;650
+priest;750;true;30;980
+witch;120;false;4500;3200
+maide;680;false;9000;470

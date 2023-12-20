@@ -7,7 +7,8 @@ import Domain.Propriedade.AcessorioModa;
 import Domain.Propriedade.Imovel;
 import Domain.Propriedade.Propriedade;
 import Domain.Propriedade.Veiculo;
-import Model.VendaRepo;
+import Model.ProfissoesRepository;
+import Model.PropriedadeRepository;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -17,13 +18,50 @@ import java.util.Scanner;
 public class SimsController {
     private ArrayList<Propriedade> coisasParaComprar;
 
+    private ArrayList<Profissao> escolherProfissao;
+
     public SimsController() throws FileNotFoundException {
-        VendaRepo repositoriodeVendas = new VendaRepo("Ficheiros/CoisasShopping.csv");
+        PropriedadeRepository repositoriodeVendas = new PropriedadeRepository("Ficheiros/CoisasShopping.csv");
+        ProfissoesRepository repositorioProfissao = new ProfissoesRepository("Ficheiros/CoisasShopping.csv");
         coisasParaComprar = repositoriodeVendas.getPropriedadesArray();
+        escolherProfissao = repositorioProfissao.getProfissaosArray();
     }
+
 
     public ArrayList<Propriedade> getCoisasParaComprar() {
         return coisasParaComprar;
+    }
+
+    public ArrayList<Profissao> getEscolherProfissao() {
+        return escolherProfissao;
+    }
+
+    public void escolherProfissao(){
+        Random random = new Random();
+        ArrayList<Profissao> arrayIndexAleatorio = new ArrayList<>();
+        int indexAleatorio = 0 ;
+
+        /**while (arrayIndexAleatorio.size() < 10) { // Este array recebe posições aleatorias de 0 a 9.
+            indexAleatorio = random.nextInt(0, this.coisasParaComprar.size()); // recupera atraves da posição aleatorio e preenche o array aleatorio
+
+            if (arrayIndexAleatorio.size() == 0 && coisasParaComprar.get(indexAleatorio) instanceof Imovel) {
+                arrayIndexAleatorio.add(indexAleatorio);
+            }
+            //Garante que a primeira posição do array está preenchida com o primeiro index aleatorio
+
+
+            //verifica que o index ainda está vazio, senão add.
+            if (!arrayIndexAleatorio.contains(indexAleatorio) && coisasParaComprar.get(indexAleatorio) instanceof Imovel) {
+                arrayIndexAleatorio.add(indexAleatorio);
+            }
+        }
+
+
+
+        for (int i = 0; i < arrayIndexAleatorio.size(); i++) {
+            System.out.println("Lista de imóveis " + i + " : ");
+            this.coisasParaComprar.get(arrayIndexAleatorio.get(i)).imprimirDetalhes();
+        }*/
     }
 
     public void vender(Jogador jogador) {
@@ -222,6 +260,12 @@ public class SimsController {
         return novoJogador;
 
     }
+
+    //criar o ciclo diario
+
+    //criar o escolher profissao if(null) choose
+
+
 
 
     //Quando desenvolver o casamento, imprimir o NPC todos para o jogador poder selecionar (A casa deve ter capacidade para

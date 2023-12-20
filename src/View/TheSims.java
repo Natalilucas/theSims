@@ -15,12 +15,11 @@ public class TheSims {
     public static void jogoMethod() throws FileNotFoundException {
 
         SimsController shopping = new SimsController();
-        Scanner sc = new Scanner(System.in);
+
         Jogador novoJogaddor = SimsController.criarPessoa();
         System.out.println("You choose to be: " + novoJogaddor.getObjetivoVida());
         System.out.println(novoJogaddor.getObjetivoVida() + " " + novoJogaddor.getNome() + " After a long jorney to the north, buy what you want from us in our shopping");
         shopping.vender(novoJogaddor);
-
 
     }
 
