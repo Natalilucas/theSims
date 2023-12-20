@@ -31,7 +31,7 @@ public class Main {
         //shopping.vender(novoJogador);
         //novoJogador.mostrarDetalhes();
 
-        jogoMethod();
+      jogoMethod();
 
 
     }

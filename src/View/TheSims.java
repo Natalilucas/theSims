@@ -20,6 +20,8 @@ public class TheSims {
         System.out.println("You choose to be: " + novoJogaddor.getObjetivoVida());
         System.out.println(novoJogaddor.getObjetivoVida() + " " + novoJogaddor.getNome() + " After a long jorney to the north, buy what you want from us in our shopping");
         shopping.vender(novoJogaddor);
+        novoJogaddor.mostrarDetalhes();
+        novoJogaddor.
 
     }
 

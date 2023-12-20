@@ -22,7 +22,7 @@ public class SimsController {
 
     public SimsController() throws FileNotFoundException {
         PropriedadeRepository repositoriodeVendas = new PropriedadeRepository("Ficheiros/CoisasShopping.csv");
-        ProfissoesRepository repositorioProfissao = new ProfissoesRepository("Ficheiros/CoisasShopping.csv");
+        ProfissoesRepository repositorioProfissao = new ProfissoesRepository("Ficheiros/Profissoes.csv");
         coisasParaComprar = repositoriodeVendas.getPropriedadesArray();
         escolherProfissao = repositorioProfissao.getProfissaosArray();
     }
@@ -37,14 +37,14 @@ public class SimsController {
     }
 
     public void escolherProfissao(){
-        Random random = new Random();
-        ArrayList<Profissao> arrayIndexAleatorio = new ArrayList<>();
-        int indexAleatorio = 0 ;
+        ArrayList<Profissao> arrayProfissoes = new ArrayList<>();
+        for (Profissao profissaoAtual: escolherProfissao) {
+            System.out.println(profissaoAtual);
+        }
 
-        /**while (arrayIndexAleatorio.size() < 10) { // Este array recebe posições aleatorias de 0 a 9.
-            indexAleatorio = random.nextInt(0, this.coisasParaComprar.size()); // recupera atraves da posição aleatorio e preenche o array aleatorio
+        /*while (arrayProfissoes.size() < escolherProfissao.size()) {
 
-            if (arrayIndexAleatorio.size() == 0 && coisasParaComprar.get(indexAleatorio) instanceof Imovel) {
+            if (arrayIndexAleatorio.size() == 0 && coisasParaComprar.get(indexAleatorio)) {
                 arrayIndexAleatorio.add(indexAleatorio);
             }
             //Garante que a primeira posição do array está preenchida com o primeiro index aleatorio
@@ -232,10 +232,10 @@ public class SimsController {
         String nome;
         Objetivo objetivoVida = null;
         Profissao profissao = null;
-        int contador, indexObjetivo;
+        int contador, indexObjetivo, counter;
 
         System.out.println("****************Welcome to our game of thrones****************");
-        System.out.println("Name you boy: ");
+        System.out.println("AY, Name you boy/girl. Your king commands: ");
         nome = input.next();
         System.out.println("Wich is your goal, choose a number: ");
 
@@ -244,8 +244,9 @@ public class SimsController {
             System.out.println(contador++ + ": " + objetivo);
         }
 
+        System.out.print("Choose now by the number");
         indexObjetivo = input.nextInt();
-        contador = 1;
+        counter = 1;
         for (Objetivo objetivo : Objetivo.values()) {
             if (indexObjetivo == contador) {
                 objetivoVida = objetivo;
@@ -254,7 +255,7 @@ public class SimsController {
         }
 
 
-        System.out.println("");
+
         Jogador novoJogador = new Jogador(nome, 0, objetivoVida, null, 100, 100, 100, 0, 0);
 
         return novoJogador;
