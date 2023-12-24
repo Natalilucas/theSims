@@ -22,5 +22,11 @@ public class Pessoa {
         return dinheiro;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
+    public void setDinheiro(double dinheiro) {
+        this.dinheiro = dinheiro;
+    }
 }

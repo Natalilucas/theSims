@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class SimsController {
     private ArrayList<Propriedade> coisasParaComprar;
 
-    private ArrayList<Profissao> escolherProfissao;
+    private static ArrayList<Profissao> escolherProfissao;
 
     public SimsController() throws FileNotFoundException {
         PropriedadeRepository repositoriodeVendas = new PropriedadeRepository("Ficheiros/CoisasShopping.csv");
@@ -36,33 +36,13 @@ public class SimsController {
         return escolherProfissao;
     }
 
-    public void escolherProfissao(){
-        ArrayList<Profissao> arrayProfissoes = new ArrayList<>();
-        for (Profissao profissaoAtual: escolherProfissao) {
-            System.out.println(profissaoAtual);
+    public static void imprimirProfissao(){
+        for (int i = 0; i < escolherProfissao.size(); i++) {
+            System.out.print("Option " + (i+1));
+            escolherProfissao.get(i).imprimirDetalhes();
         }
-
-        /*while (arrayProfissoes.size() < escolherProfissao.size()) {
-
-            if (arrayIndexAleatorio.size() == 0 && coisasParaComprar.get(indexAleatorio)) {
-                arrayIndexAleatorio.add(indexAleatorio);
-            }
-            //Garante que a primeira posição do array está preenchida com o primeiro index aleatorio
-
-
-            //verifica que o index ainda está vazio, senão add.
-            if (!arrayIndexAleatorio.contains(indexAleatorio) && coisasParaComprar.get(indexAleatorio) instanceof Imovel) {
-                arrayIndexAleatorio.add(indexAleatorio);
-            }
-        }
-
-
-
-        for (int i = 0; i < arrayIndexAleatorio.size(); i++) {
-            System.out.println("Lista de imóveis " + i + " : ");
-            this.coisasParaComprar.get(arrayIndexAleatorio.get(i)).imprimirDetalhes();
-        }*/
     }
+    //criar o escolher profissao if(null) choose
 
     public void vender(Jogador jogador) {
         Scanner input = new Scanner(System.in);
@@ -244,7 +224,7 @@ public class SimsController {
             System.out.println(contador++ + ": " + objetivo);
         }
 
-        System.out.print("Choose now by the number");
+        System.out.print("Choose now by the number ");
         indexObjetivo = input.nextInt();
         counter = 1;
         for (Objetivo objetivo : Objetivo.values()) {
@@ -254,8 +234,6 @@ public class SimsController {
             contador++;
         }
 
-
-
         Jogador novoJogador = new Jogador(nome, 0, objetivoVida, null, 100, 100, 100, 0, 0);
 
         return novoJogador;
@@ -264,8 +242,50 @@ public class SimsController {
 
     //criar o ciclo diario
 
-    //criar o escolher profissao if(null) choose
 
+    public static void cicloVida(Jogador jogador){
+        int dia;
+        //if(trabalhar) dinheiro =* salarioDia.
+        String cicloAtual = null;
+
+        Scanner sc = new Scanner(System.in);
+        cicloAtual = sc.next();
+
+
+        switch (cicloAtual){
+            case "trabalhar":
+                if(jogador.getProfissaoAtual().equals(null)){
+                    System.out.println("You have the right to choose what you will be");
+                    imprimirProfissao();
+                }
+                break;
+            case "dormir":
+                System.out.println("zzzzZZZZZZZ");
+                if(jogador.getNecessidadeSono() < 100){
+                    jogador.setNecessidadeSono(100);
+                }
+                break;
+            case "refeicao":
+                if(jogador.getNecessidadeRefeicao() < 100){
+                    jogador.setNecessidadeRefeicao(100);
+                    jogador.setDinheiro(jogador.getDinheiro()-5);
+                }
+                break;
+            case "falarPessoa", "jogarPC", "hobby":
+                if(jogador.getNecessidadeSocial() < 100){
+                    jogador.setNecessidadeSocial(100);
+                }
+                break;
+            case "irCompras":
+                break;
+            case "formacao":
+                break;
+            case "visitarProp":
+                break;
+
+        }
+
+    }
 
 
 

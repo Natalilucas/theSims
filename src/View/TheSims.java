@@ -19,9 +19,16 @@ public class TheSims {
         Jogador novoJogaddor = SimsController.criarPessoa();
         System.out.println("You choose to be: " + novoJogaddor.getObjetivoVida());
         System.out.println(novoJogaddor.getObjetivoVida() + " " + novoJogaddor.getNome() + " After a long jorney to the north, buy what you want from us in our shopping");
+
+
         shopping.vender(novoJogaddor);
-        novoJogaddor.mostrarDetalhes();
-        novoJogaddor.
+        System.out.println("So " + novoJogaddor.getNome() + ", there's is a easy way for you to get money in this city. Go to work.. Here's a opportunity for you to choose your new job.. ");
+        SimsController.imprimirProfissao();
+
+        // escolher profissão
+
+        //novoJogaddor.mostrarDetalhes();
+
 
     }
 
