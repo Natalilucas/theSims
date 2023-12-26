@@ -7,6 +7,7 @@ import Domain.Propriedade.AcessorioModa;
 import Domain.Propriedade.Imovel;
 import Domain.Propriedade.Propriedade;
 import Domain.Propriedade.Veiculo;
+import Domain.Shopping.Shopping;
 import Model.ProfissoesRepository;
 import Model.PropriedadeRepository;
 
@@ -234,7 +235,7 @@ public class SimsController {
             contador++;
         }
 
-        Jogador novoJogador = new Jogador(nome, 0, objetivoVida, null, 100, 100, 100, 0, 0);
+        Jogador novoJogador = new Jogador(nome, 0, objetivoVida , null, 100, 100, 100, 0, 0);
 
         return novoJogador;
 
@@ -243,47 +244,103 @@ public class SimsController {
     //criar o ciclo diario
 
 
-    public static void cicloVida(Jogador jogador){
-        int dia;
-        //if(trabalhar) dinheiro =* salarioDia.
-        String cicloAtual = null;
+
+
+    public void cicloVida(Jogador jogador){
+        int cicloAtual, momentoAtual, profissaoAtualIndex, dia;
+        System.out.println("Now, if you want to complet your player, you may require to pick a profession ..");
 
         Scanner sc = new Scanner(System.in);
-        cicloAtual = sc.next();
+        for (dia = 1; dia < 100; dia ++) { //clico de dias
+            System.out.println("Dia: " + dia);
+            for (int momentoDia = 1; momentoDia < 5  ; momentoDia++) { //momento do dia, manhã, meio dia, tarde ou noite
+                switch (momentoDia){
+                    case 1:
+                        System.out.println(jogador.getObjetivoVida());
+                        System.out.println("What you wanna do now, right dow? It's morning ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop |   ");
+
+                        momentoAtual = sc.nextInt();
+
+                        switch (momentoAtual){
+                            case 1:
+                                Profissao profissaoAtual  = jogador.getProfissaoAtual();
+                                if(profissaoAtual == null){
+                                    System.out.println("You have the right to choose what you will be");
+                                    imprimirProfissao();
+                                    System.out.println("Wich one do ypu choose to be? ");
+                                    profissaoAtualIndex = sc.nextInt();
+                                    escolherProfissao.get(profissaoAtualIndex);
+                                    double dinheiroAtual = jogador.getDinheiro();
+                                    double salarioTrabalhado = jogador.getProfissaoAtual().getSalarioDia() * 8;
+                                    jogador.setDinheiro( dinheiroAtual += salarioTrabalhado);
+                                    System.out.println("Now your have a new job.");
+                                    System.out.println("After a long day of work, your account was updated!!");
+                                    System.out.println("Bank Account: " + dinheiroAtual);
+                                } else {
+                                    double dinheiroAtual = jogador.getDinheiro();
+                                    double salarioTrabalhado = jogador.getProfissaoAtual().getSalarioDia() * 8;
+                                    jogador.setDinheiro( dinheiroAtual += salarioTrabalhado);
+                                    System.out.println("After a long day of work, your account was updated!!");
+                                    System.out.println("Bank Account: " + dinheiroAtual);
+                                }
+                                break;
+                            case 2:
+                                System.out.println("zzzzZZZZZZZ");
+                                if(jogador.getNecessidadeSono() < 100){
+                                    jogador.setNecessidadeSono(100);
+                                }
+                                break;
+                            case 3:
+                                if(jogador.getNecessidadeRefeicao() < 100){
+                                    jogador.setNecessidadeRefeicao(100);
+                                    jogador.setDinheiro(jogador.getDinheiro()-5);
+                                }
+                                break;
+                            case 4:
+                                if(jogador.getNecessidadeSocial() < 100){
+                                    jogador.setNecessidadeSocial(100);
+                                }
+                                break;
+                            case 5:
+                                vender(jogador);
+                                break;
+                            case 6:
+                                break;
+                            case 7:
+                                break;
+                        }
+                        break;
+                    case 2:
+                        System.out.println("What you wanna do now, right dow? It's midday ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop |   ");
+                        momentoAtual = sc.nextInt();
+
+                        break;
 
 
-        switch (cicloAtual){
-            case "trabalhar":
-                if(jogador.getProfissaoAtual().equals(null)){
-                    System.out.println("You have the right to choose what you will be");
-                    imprimirProfissao();
+                    case 3:
+
+                        System.out.println("What you wanna do now, right dow? It's afternoon ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop |   ");
+                        momentoAtual = sc.nextInt();
+
+                        break;
+                    case 4:
+
+                        System.out.println("What you wanna do now, right dow? It's night ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop |   ");
+                        momentoAtual = sc.nextInt();
+
+
+                        break;
+
+
+
                 }
-                break;
-            case "dormir":
-                System.out.println("zzzzZZZZZZZ");
-                if(jogador.getNecessidadeSono() < 100){
-                    jogador.setNecessidadeSono(100);
-                }
-                break;
-            case "refeicao":
-                if(jogador.getNecessidadeRefeicao() < 100){
-                    jogador.setNecessidadeRefeicao(100);
-                    jogador.setDinheiro(jogador.getDinheiro()-5);
-                }
-                break;
-            case "falarPessoa", "jogarPC", "hobby":
-                if(jogador.getNecessidadeSocial() < 100){
-                    jogador.setNecessidadeSocial(100);
-                }
-                break;
-            case "irCompras":
-                break;
-            case "formacao":
-                break;
-            case "visitarProp":
-                break;
+
+
+            }
 
         }
+
+
 
     }
 

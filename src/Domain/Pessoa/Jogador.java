@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class Jogador extends Pessoa {
 
-    private Objetivo objetivoVida;
-    private Profissao profissaoAtual;
+    protected Objetivo objetivoVida;
+    protected Profissao profissaoAtual;
     private int necessidadeSono;
     private int necessidadeRefeicao;
     private int necessidadeSocial;

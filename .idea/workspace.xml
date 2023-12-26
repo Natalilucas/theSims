@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SimsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SimsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/Jogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/Jogador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/Profissao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/Profissao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/TheSims.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TheSims.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,6 +73,8 @@
       <workItem from="1703022854455" duration="6596000" />
       <workItem from="1703095006425" duration="6374000" />
       <workItem from="1703339324328" duration="14348000" />
+      <workItem from="1703413257372" duration="972000" />
+      <workItem from="1703596923738" duration="12776000" />
     </task>
     <servers />
   </component>
@@ -91,25 +91,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
-          <line>210</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
-          <line>208</line>
-          <properties class="Controller.SimsController" method="criarPessoa">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
