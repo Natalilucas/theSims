@@ -58,7 +58,9 @@ public class Jogador extends Pessoa {
         return educacao;
     }
 
-
+    public ArrayList<Propriedade> getPropriedades() {
+        return propriedades;
+    }
 
     public void addAPropriedade(Propriedade novaPropriedade) {
         this.propriedades.add(novaPropriedade);

@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b36e65a7-be06-49c7-85e2-81559ea7270b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ficheiros/Profissoes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Ficheiros/Profissoes.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SimsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SimsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/Jogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/Jogador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/TheSims.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TheSims.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Propriedade/AcessorioModa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Propriedade/AcessorioModa.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +75,8 @@
       <workItem from="1703095006425" duration="6374000" />
       <workItem from="1703339324328" duration="14348000" />
       <workItem from="1703413257372" duration="972000" />
-      <workItem from="1703596923738" duration="12776000" />
+      <workItem from="1703596923738" duration="26540000" />
+      <workItem from="1703670843586" duration="8466000" />
     </task>
     <servers />
   </component>
@@ -91,5 +93,20 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
+          <line>47</line>
+          <properties class="Controller.SimsController" method="vender">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

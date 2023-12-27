@@ -1,6 +1,6 @@
 nome;salarioDia;formal;estatuto;nivelMinEdu
 squire;200;true;60;500
-mistress;600;false;10;10
+mistress;600;false;0;0
 mesterofcoin;1000;true;100;2000
 grandmaester;500;true;500;9000
 builder;230;false;3000;600
