@@ -12,6 +12,8 @@ public class Imovel extends Propriedade {
     @Override
     public void imprimirDetalhes() {
         super.imprimirDetalhes();
-        System.out.println("Capacidade de pessoas: " + this.capacidadePessoas);
+        System.out.print("Name: " + this.getNome() + " | Price: " +this.getCusto() + " | Status: " + this.getEstatuto());
+        System.out.println(" | Capacity of members: " + this.capacidadePessoas);
+        System.out.println();
     }
 }

@@ -16,7 +16,7 @@ public class NPC extends Pessoa {
     }
 
     public void imprimirDetalhes(){
-        System.out.println("Nome: "+ this.getNome() + "\t" + "| Custo: " + this.getDinheiro() + " | Estatuto: " + this.estatutoMinimo);
+        System.out.println("Name: "+ this.getNome() + "\t" + " | Cost: " + this.getDinheiro() + " | Status: " + this.estatutoMinimo);
     }
 
 }

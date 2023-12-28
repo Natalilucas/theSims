@@ -37,8 +37,8 @@ public class Profissao {
     }
 
     public void imprimirDetalhes(){
-        System.out.println(" | Profissão: "+ this.nome + "\t" + "| Salario: " + this.salarioDia + " | formal: " + this.formal
-        + "| Estatuto " + this.estatuto + " Nivel Educação " + this.nivelMinimoEducacao);
+        System.out.println(" | Ocuppation: "+ this.nome + "\t" + "| Wage: " + this.salarioDia + " | Formal: " + this.formal
+        + "| Status " + this.estatuto + " | Minimum level education " + this.nivelMinimoEducacao);
     }
 
 

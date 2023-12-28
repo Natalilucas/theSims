@@ -14,7 +14,7 @@ public class Jogador extends Pessoa {
     private int necessidadeSocial;
     private int estatuto;
     private int educacao;
-    private ArrayList<Propriedade> propriedades;
+    protected ArrayList<Propriedade> propriedades;
     private ArrayList<NPC> familia;
 
     public Jogador(String nome, double dinheiro, Objetivo objetivoVida, Profissao profissaoAtual, int necessidadeSono, int necessidadeRefeicao, int necessidadeSocial, int estatuto, int educacao) {
@@ -68,14 +68,15 @@ public class Jogador extends Pessoa {
 
 
     public void mostrarDetalhes() {
-        System.out.println("Your player: " + this.nome);
+        System.out.println(" | Goal " + this.objetivoVida);
+        System.out.println(" | Your player: " + this.nome);
         System.out.println(" | Golden bank:" + this.dinheiro);
         profissaoAtual.imprimirDetalhes();
-        System.out.println(" | Necessidade de Sono: " + this.necessidadeSono);
-        System.out.println(" | Necessidade de Refeição:" + this.necessidadeRefeicao);
-        System.out.println(" | Necessidade Social: " + this.necessidadeSocial);
-        System.out.println(" | Estatuto: " + this.estatuto);
-        System.out.println(" | Educação: " + this.educacao);
+        System.out.println(" | Sleep need: " + this.necessidadeSono);
+        System.out.println(" | Meal need:" + this.necessidadeRefeicao);
+        System.out.println(" | Socialize need: " + this.necessidadeSocial);
+        System.out.println(" | Status: " + this.estatuto);
+        System.out.println(" | Education level: " + this.educacao);
 
         for (Propriedade propriedadeAtual : propriedades) {
             propriedadeAtual.imprimirDetalhes();

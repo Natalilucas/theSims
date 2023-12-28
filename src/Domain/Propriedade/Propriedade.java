@@ -25,7 +25,6 @@ public class Propriedade {
     }
 
     public void imprimirDetalhes(){
-        System.out.println("Nome: "+ this.nome + "\t" + "| Custo: " + this.custo + " | Estatuto: " + this.estatuto);
     }
 
 

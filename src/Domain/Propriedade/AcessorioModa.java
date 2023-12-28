@@ -21,7 +21,8 @@ public class AcessorioModa extends Propriedade {
     @Override
     public void imprimirDetalhes() {
         super.imprimirDetalhes();
-        System.out.println(" Marca " + this.marca + "| É formal " + this.formal);
+        System.out.print("Name: "+ this.getNome() + "\t" + "| Cost: " + this.getCusto() + " | Status: " + this.getEstatuto());
+        System.out.println(" | Brand " + this.marca + "| Formal " + this.formal);
         System.out.println();
     }
 }

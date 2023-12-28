@@ -13,8 +13,10 @@ import Model.PropriedadeRepository;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Formattable;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.spi.AbstractResourceBundleProvider;
 
 public class SimsController {
     private ArrayList<Propriedade> coisasParaComprar;
@@ -43,7 +45,30 @@ public class SimsController {
             escolherProfissao.get(i).imprimirDetalhes();
         }
     }
-    //criar o escolher profissao if(null) choose
+
+
+    public void listarPropriedades(Jogador jogador){
+        ArrayList<Propriedade> propriedadesDoJogador = new ArrayList<>();
+        propriedadesDoJogador = jogador.getPropriedades();
+        System.out.println("Here are your properties: " );
+        for (Propriedade propriedadeAtual: propriedadesDoJogador) {
+            if(propriedadeAtual instanceof  Imovel){
+                propriedadeAtual.imprimirDetalhes();
+            }
+        }
+    }
+
+    public static void listarAcessorios(Jogador jogador){
+        ArrayList<Propriedade> acessoriosDoJogador = new ArrayList<>();
+        acessoriosDoJogador = jogador.getPropriedades();
+        System.out.println("Here are your properties: " );
+        for (Propriedade propriedadeAtual: acessoriosDoJogador) {
+            if(propriedadeAtual instanceof  AcessorioModa){
+                propriedadeAtual.imprimirDetalhes();
+                propriedadeAtual.getEstatuto();
+            }
+        }
+    }
 
     public void vender(Jogador jogador) {
         Scanner input = new Scanner(System.in);
@@ -117,22 +142,21 @@ public class SimsController {
             case 2:
                 System.out.println("**************************** Bravosí Car *****************************");
                 System.out.println("Car list: ");
-                ArrayList<Integer> arrayIndexAleatorio1 = new ArrayList<>();
 
-                while (arrayIndexAleatorio1.size() < 10) {
+                while (arrayIndexAleatorio.size() < 10) {
                     indexAleatorio = random.nextInt(0, this.coisasParaComprar.size());
-                    if (arrayIndexAleatorio1.size() == 0) {
-                        arrayIndexAleatorio1.add(indexAleatorio);
+                    if (arrayIndexAleatorio.size() == 0) {
+                        arrayIndexAleatorio.add(indexAleatorio);
                     }
 
-                    if (!arrayIndexAleatorio1.contains(indexAleatorio) && coisasParaComprar.get(indexAleatorio) instanceof Veiculo) {
-                        arrayIndexAleatorio1.add(indexAleatorio);
+                    if (!arrayIndexAleatorio.contains(indexAleatorio) && coisasParaComprar.get(indexAleatorio) instanceof Veiculo) {
+                        arrayIndexAleatorio.add(indexAleatorio);
                     }
                 }
 
-                for (i = 0; i < arrayIndexAleatorio1.size(); i++) {
+                for (i = 0; i < arrayIndexAleatorio.size(); i++) {
                     System.out.println("Vehicle list " + i + " : ");
-                    this.coisasParaComprar.get(arrayIndexAleatorio1.get(i)).imprimirDetalhes();
+                    this.coisasParaComprar.get(arrayIndexAleatorio.get(i)).imprimirDetalhes();
                 }
 
 
@@ -143,10 +167,10 @@ public class SimsController {
                     System.out.println("Wich item from our list you want to buy? ");
                     itemComprar = input.nextInt();
                     System.out.print("You bought: ");
-                    System.out.println(this.coisasParaComprar.get(arrayIndexAleatorio1.get(itemComprar)).getNome());  //Imprimir os detalhes do item que o cliente quer comprar
+                    System.out.println(this.coisasParaComprar.get(arrayIndexAleatorio.get(itemComprar)).getNome());  //Imprimir os detalhes do item que o cliente quer comprar
 
-                    if (this.coisasParaComprar.get(arrayIndexAleatorio1.get(itemComprar)).getCusto() <= jogador.getDinheiro()) {
-                        jogador.addAPropriedade(this.coisasParaComprar.get(arrayIndexAleatorio1.get(itemComprar)));
+                    if (this.coisasParaComprar.get(arrayIndexAleatorio.get(itemComprar)).getCusto() <= jogador.getDinheiro()) {
+                        jogador.addAPropriedade(this.coisasParaComprar.get(arrayIndexAleatorio.get(itemComprar)));
                         this.coisasParaComprar.remove(itemComprar);
                         realizouCompra = true;
                         if (realizouCompra) {
@@ -219,46 +243,59 @@ public class SimsController {
 
 
     public static Jogador criarPessoa() {
-
         Scanner input = new Scanner(System.in);
+
         String nome;
+        double dinheiro = 1000000.00;
+        int estatuto = 0, educacao = 0, necessidadeRefeicao = 100, necessidadeSocial = 100, necessidadeSono = 100;
+
+
         Objetivo objetivoVida = null;
-        Profissao profissao = null;
+        Profissao profissao = new Profissao( "null", 0, false, 0, 0);
         int contador, indexObjetivo, counter;
 
-        System.out.println("****************Welcome to our game of thrones****************");
-        System.out.println("AY, Name you boy/girl. Your king commands: ");
+        System.out.println("****************");
+        System.out.println("Welcome to our Game of Thrones");
+        System.out.println("****************");
+        System.out.println("AY, Name you boy/girl. Your king commands you: ");
         nome = input.next();
-        System.out.println("Wich is your goal, choose a number: ");
+
 
         contador = 1;
         for (Objetivo objetivo : Objetivo.values()) {
-            System.out.println(contador++ + ": " + objetivo);
+            System.out.println(contador++ + " = " + objetivo);
         }
 
-        System.out.print("Choose now by the number ");
+        System.out.println("Which one is your goal, choose a number: ");
         indexObjetivo = input.nextInt();
-        counter = 1;
-        for (Objetivo objetivo : Objetivo.values()) {
-            if (indexObjetivo == contador) {
-                objetivoVida = objetivo;
-            }
-            contador++;
+
+        if (indexObjetivo >= 1 && indexObjetivo <= Objetivo.values().length) {
+            objetivoVida = Objetivo.values()[indexObjetivo - 1];
+            System.out.println("You choose: " + objetivoVida);
+        } else {
+            System.out.println("Invalid choice. Exiting...");
         }
 
-        Jogador novoJogador = new Jogador(nome, 0, objetivoVida , null, 100, 100, 100, 0, 0);
+        Jogador novoJogador = new Jogador(nome, dinheiro, objetivoVida , profissao, necessidadeSono, necessidadeRefeicao, necessidadeSocial, estatuto, educacao);
 
         return novoJogador;
 
     }
 
-    //criar o ciclo diario
 
+    public static void interacaoDiaria(Jogador jogador){
+        jogador.setNecessidadeSono(jogador.getNecessidadeSono()-25);
+        jogador.setNecessidadeRefeicao(jogador.getNecessidadeRefeicao()-20);
+        jogador.setNecessidadeSocial(jogador.getNecessidadeSocial()-15);
+    }
 
+    public static void detalhesJogador(Jogador jogador){
+        System.out.println(" Sleep: " + jogador.getNecessidadeSono()+ " | Meal: " + jogador.getNecessidadeRefeicao() + "| Social: " + jogador.getNecessidadeSocial());
+    }
 
 
     public void cicloVida(Jogador jogador){
-        int cicloAtual, momentoAtual, profissaoAtualIndex, dia;
+        int cicloAtual, escolhaAtividade, profissaoAtualIndex, dia, changePro;
         boolean temNivel = false;
         System.out.println("Now, if you want to complet your player, you may require to pick a profession ..");
 
@@ -268,47 +305,76 @@ public class SimsController {
             for (int momentoDia = 1; momentoDia < 5  ; momentoDia++) { //momento do dia, manhã, meio dia, tarde ou noite
                 switch (momentoDia){
                     case 1:
-                        do {
-                            System.out.println(jogador.getObjetivoVida());
-                            System.out.println("What you wanna do now, right dow? It's morning ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Exibir detalhes do Jogador | 7 - Escolher Profissão | 0 - Out  ");
+                        detalhesJogador(jogador);
+                        System.out.println("What you wanna do now, right dow? It's morning ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Exibir detalhes do Jogador | 7 - Tirar formação | 8 -  Escolher Profissão | 9 - Visistar Propriedades | 0 - Out  ");
 
-                            momentoAtual = sc.nextInt();
-                            momentoAtual(momentoAtual, jogador);
+                        escolhaAtividade = sc.nextInt();
+                        momentoAtual(escolhaAtividade, jogador);
+
+                        /*if( jogador.getNecessidadeSocial() < 25 || jogador.getNecessidadeSono() < 25 ||  jogador.getNecessidadeRefeicao() < 25) {
+                            if (jogador.getNecessidadeSocial() <= 25) {
+                                escolhaAtividade = sc.nextInt();
+                                momentoAtual(escolhaAtividade, jogador);
+                                do {
+                                    System.out.println("While you need to socialize, you only option is nº 4");
+                                    escolhaAtividade = sc.nextInt();
+                                    momentoAtual(escolhaAtividade, jogador);
+                                } while (escolhaAtividade != 4);
+                            }
+
+                            if (jogador.getNecessidadeSono() <= 25) {
+                                escolhaAtividade = sc.nextInt();
+                                momentoAtual(escolhaAtividade, jogador);
+                                do {
+                                    System.out.println("While you need to sleep, you only option is nº 2");
+                                    escolhaAtividade = sc.nextInt();
+                                    momentoAtual(escolhaAtividade, jogador);
+                                } while (escolhaAtividade != 2);
+
+                            }
+
+                            if (jogador.getNecessidadeRefeicao() <= 25) {
+                                escolhaAtividade = sc.nextInt();
+                                momentoAtual(escolhaAtividade, jogador);
+                                do {
+                                    System.out.println("While you need to eat, you only option is nº 3");
+                                    escolhaAtividade = sc.nextInt();
+                                    momentoAtual(escolhaAtividade, jogador);
+                                } while (escolhaAtividade != 3);
+                            }
+                        } else {
+                            escolhaAtividade = sc.nextInt();
+                            momentoAtual(escolhaAtividade, jogador);
+                        }*/
 
 
-                        }while(momentoAtual == 0);
+
+
+
                         break;
                     case 2:
-                        System.out.println("What you wanna do now, right dow? It's midday ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Exibir detalhes do Jogador | 7 - Escolher Profissão |  0 - Out   ");
-                        momentoAtual = sc.nextInt();
-                        momentoAtual(momentoAtual, jogador);
-
+                        interacaoDiaria(jogador);
+                        detalhesJogador(jogador);
+                        System.out.println("What you wanna do now, right dow? It's mid-day ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Exibir detalhes do Jogador | 7 - Tirar formação | 8 -  Escolher Profissão | 9 - Visistar Propriedades | 0 - Out  ");
+                        escolhaAtividade = sc.nextInt();
+                        momentoAtual(escolhaAtividade, jogador);
                         break;
-
-
                     case 3:
-
-                        System.out.println("What you wanna do now, right dow? It's afternoon ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Exibir detalhes do Jogador | 7 - Escolher Profissão |  0 - Out    ");
-                        momentoAtual = sc.nextInt();
-                        momentoAtual(momentoAtual, jogador);
-
+                        interacaoDiaria(jogador);
+                        detalhesJogador(jogador);
+                        System.out.println("What you wanna do now, right dow? It's afternoon ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Exibir detalhes do Jogador | 7 - Tirar formação | 8 -  Escolher Profissão | 9 - Visistar Propriedades | 0 - Out  ");
+                        escolhaAtividade = sc.nextInt();
+                        momentoAtual(escolhaAtividade, jogador);
                         break;
                     case 4:
-
-                        System.out.println("What you wanna do now, right dow? It's night ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Exibir detalhes do Jogador | 7 - Escolher Profissão |  0 - Out ");
-                        momentoAtual = sc.nextInt();
-                        momentoAtual(momentoAtual, jogador);
-
-
+                        interacaoDiaria(jogador);
+                        detalhesJogador(jogador);
+                        System.out.println("What you wanna do now, right dow? It's evening ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Exibir detalhes do Jogador | 7 - Tirar formação | 8 -  Escolher Profissão | 9 - Visistar Propriedades | 0 - Out  ");
+                        escolhaAtividade = sc.nextInt();
+                        momentoAtual(escolhaAtividade, jogador);
                         break;
-
-
-
                 }
-
-
             }
-
         }
 
 
@@ -317,14 +383,17 @@ public class SimsController {
 
 
     public void momentoAtual(int momentoAtual, Jogador jogador) {
-        int profissaoAtualIndex;
+        int profissaoAtualIndex, changePro;
         boolean temNivel = false;
+        Scanner sc = new Scanner(System.in);
+
+
         do {
             switch (momentoAtual) {
-                case 1: // case para fazer o player trabalhar
+                case 1: // trabalhar
 
                     Profissao profissaoAtual = jogador.getProfissaoAtual();
-                    if (profissaoAtual == null) {
+                    if (profissaoAtual.getNome().equals("null")){
                         System.out.println("Go lock for a job ");
                         return;
                     } else {
@@ -336,15 +405,17 @@ public class SimsController {
                         System.out.println("After a long day of work, your account was updated!!");
                         System.out.println("Bank Account: " + dinheiroAtual);
                     }
-                    break;
-                case 2:
+                    return;
+                case 2: //Dormir
                     System.out.println("zzzzZZZZZZZ");
+                    System.out.println("Sleep need: " +  jogador.getNecessidadeSono());
                     if (jogador.getNecessidadeSono() < 100) {
                         jogador.setNecessidadeSono(100);
+
                     }
                     return;
 
-                case 3:
+                case 3: // comer
                     System.out.println("Huuumm..");
                     jogador.setDinheiro(jogador.getDinheiro() - 5);
                     System.out.println("Your didn't starve, and you paid for it");
@@ -353,49 +424,87 @@ public class SimsController {
                         jogador.setNecessidadeRefeicao(100);
                     }
                     return;
-                case 4:
+                case 4: // Socializar, Jogar ou Fazer algum Hobby
+                    System.out.println("Playing ...talking.. doing some hobby");
                     if (jogador.getNecessidadeSocial() < 100) {
                         jogador.setNecessidadeSocial(100);
                     }
-                    break;
-                case 5:
+                    return;
+                case 5: //Chamar o método de vender
                     vender(jogador);
-                    break;
-                case 6:
+                    return;
+                case 6: //Mostrar detalhes do jogador
                     System.out.println("Player information: ");
                     jogador.mostrarDetalhes();
-                    break;
-                case 7:
+                    return;
+
+                case 7: //Formação +2
+                    System.out.println("Do you want to learn something so you can change your future? ");
+                    System.out.print("Welcome to CESAE, your level of education is up ");
+                    jogador.setEducacao(jogador.getEducacao()+2);
+                    System.out.println("points");
+                    System.out.println(jogador.getEducacao());
+                    return;
+                case 8: // Escolher a profissão
                     profissaoAtual = jogador.getProfissaoAtual();
                     System.out.println("Actual profession: " + profissaoAtual);
 
-                    if (profissaoAtual == null) {
+                    if (profissaoAtual.getNome().equals("null")) {
                         System.out.println("You have the right to choose what you will be");
                         imprimirProfissao();
                         System.out.println("Which one do you choose to be? ");
-                        Scanner sc = new Scanner(System.in);
+
                         profissaoAtualIndex = sc.nextInt();
                         Profissao profissaoEscolhida = this.getEscolherProfissao().get(profissaoAtualIndex - 1);
 
-                        System.out.println("Education level min required: " + profissaoEscolhida.getNivelMinimoEducacao());
+                        System.out.println("Minimun Education level required: " + profissaoEscolhida.getNivelMinimoEducacao());
                         System.out.println("Player education: " + jogador.getEducacao());
 
-                        if (profissaoEscolhida.getNivelMinimoEducacao() >= jogador.getEducacao()) {
-                            System.out.println("You don't have the education for that. Go back and find yourself an education");
-                            return;
-                        } else {
+                       /* boolean temObjetoFormal = false;
+                        for (Propriedade propriedadeAtual : jogadorNovo.getTodasAsPropriedades()) {
+                            if (propriedadeAtual instanceof AcessorioModa && ((AcessorioModa) propriedadeAtual).getFormal() == true) {
+                                temObjetoFormal = true;
+                            } else {
+                                System.out.println("Não tens acessorios formais!");
+                            }
+                        }
+
+                        if (listaProfissoes().get(opcaoProfissao - 1).isFormal() && temObjetoFormal == true) {
+                            jogadorNovo.setProfissao(listaProfissoes().get(opcaoProfissao - 1));
+                        }*/
+
+
+
+                        if (profissaoEscolhida.getNivelMinimoEducacao() <= jogador.getEducacao() || profissaoEscolhida.getEstatuto() <= jogador.getEstatuto() ) { // || jogador.getPropriedades()
                             temNivel = true;
                             jogador.setProfissaoAtual(profissaoEscolhida);
                             System.out.println("You want to be " + jogador.getProfissaoAtual().getNome() + ". Grated");
+                        } else {
+                            System.out.println("You don't have the education for that. Go back and find yourself an education");
+                            if(escolherProfissao.get(profissaoAtualIndex).isFormal() == true ){
+                                listarAcessorios(jogador);
+                            }
+                            return;
                         }
                     } else {
-                        System.out.println("You already have a profession: " + profissaoAtual.getNome() + " To change, go back to menu");
+                        System.out.println("You already have a profession: " + profissaoAtual.getNome() + " To change, type 1 ou 0 to go back to menu");
+                        changePro = sc.nextInt();
+                        if(changePro == 1){
+                            boolean b = profissaoAtual == null;
+                            return;
+                        } else if (changePro == 0){
+                            return;
+                        }
                     }
 
-                    break;
+                    return;
 
-                case 0:
-                    break;
+                case 9: //visitar a propriedade
+                    listarPropriedades(jogador);
+                    return;
+
+                case 0: //Sair
+                    return;
             }
         }while (momentoAtual != 0) ;
     }
