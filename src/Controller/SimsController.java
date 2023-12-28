@@ -2,12 +2,14 @@ package Controller;
 
 import Domain.Enum.Objetivo;
 import Domain.Pessoa.Jogador;
+import Domain.Pessoa.NPC;
 import Domain.Pessoa.Profissao;
 import Domain.Propriedade.AcessorioModa;
 import Domain.Propriedade.Imovel;
 import Domain.Propriedade.Propriedade;
 import Domain.Propriedade.Veiculo;
 import Domain.Shopping.Shopping;
+import Model.NPCRepository;
 import Model.ProfissoesRepository;
 import Model.PropriedadeRepository;
 
@@ -21,15 +23,9 @@ import java.util.spi.AbstractResourceBundleProvider;
 public class SimsController {
     private ArrayList<Propriedade> coisasParaComprar;
 
-    private static ArrayList<Profissao> escolherProfissao;
+    private ArrayList<Profissao> escolherProfissao;
 
-    public SimsController() throws FileNotFoundException {
-        PropriedadeRepository repositoriodeVendas = new PropriedadeRepository("Ficheiros/CoisasShopping.csv");
-        ProfissoesRepository repositorioProfissao = new ProfissoesRepository("Ficheiros/Profissoes.csv");
-        coisasParaComprar = repositoriodeVendas.getPropriedadesArray();
-        escolherProfissao = repositorioProfissao.getProfissaosArray();
-    }
-
+    private ArrayList<NPC> casarNPC;
 
     public ArrayList<Propriedade> getCoisasParaComprar() {
         return coisasParaComprar;
@@ -39,13 +35,18 @@ public class SimsController {
         return escolherProfissao;
     }
 
-    public static void imprimirProfissao(){
-        for (int i = 0; i < escolherProfissao.size(); i++) {
-            System.out.print("Option " + (i+1));
-            escolherProfissao.get(i).imprimirDetalhes();
-        }
+    public ArrayList<NPC> getCasarNPC() {
+        return casarNPC;
     }
 
+    public SimsController() throws FileNotFoundException {
+        PropriedadeRepository repositoriodeVendas = new PropriedadeRepository("Ficheiros/CoisasShopping.csv");
+        ProfissoesRepository repositorioProfissao = new ProfissoesRepository("Ficheiros/Profissoes.csv");
+        NPCRepository npcRepository = new NPCRepository("Ficheiros/NPC.csv");
+        coisasParaComprar = repositoriodeVendas.getPropriedadesArray();
+        escolherProfissao = repositorioProfissao.getProfissaosArray();
+        casarNPC = npcRepository.getNpcArrayList();
+    }
 
     public void listarPropriedades(Jogador jogador){
         ArrayList<Propriedade> propriedadesDoJogador = new ArrayList<>();
@@ -58,7 +59,21 @@ public class SimsController {
         }
     }
 
-    public static void listarAcessorios(Jogador jogador){
+    public void imprimirProfissao(){
+        for (int i = 0; i < escolherProfissao.size(); i++) {
+            System.out.print("Option " + (i+1));
+            escolherProfissao.get(i).imprimirDetalhes();
+        }
+    }
+
+    public void casarComNPC(){
+        for (int i = 0; i < casarNPC.size(); i++) {
+            System.out.print("Bride or Groom " + (i+1) + " : ");
+            casarNPC.get(i).imprimirDetalhes();
+        }
+    }
+
+    public void listarAcessorios(Jogador jogador){
         ArrayList<Propriedade> acessoriosDoJogador = new ArrayList<>();
         acessoriosDoJogador = jogador.getPropriedades();
         System.out.println("Here are your properties: " );
@@ -241,7 +256,6 @@ public class SimsController {
 
     }
 
-
     public static Jogador criarPessoa() {
         Scanner input = new Scanner(System.in);
 
@@ -282,7 +296,6 @@ public class SimsController {
 
     }
 
-
     public static void interacaoDiaria(Jogador jogador){
         jogador.setNecessidadeSono(jogador.getNecessidadeSono()-25);
         jogador.setNecessidadeRefeicao(jogador.getNecessidadeRefeicao()-20);
@@ -291,6 +304,26 @@ public class SimsController {
 
     public static void detalhesJogador(Jogador jogador){
         System.out.println(" Sleep: " + jogador.getNecessidadeSono()+ " | Meal: " + jogador.getNecessidadeRefeicao() + "| Social: " + jogador.getNecessidadeSocial());
+    }
+
+    public void casamento(Jogador jogador){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Which one do you choose? ");
+        int opcaoCasamento = sc.nextInt();
+        NPC novoMebroFamilia = this.getCasarNPC().get(opcaoCasamento-1);
+
+        System.out.println("You have choosen: " + novoMebroFamilia);
+        System.out.println("Minimum Status Level Required : " + novoMebroFamilia.getEstatutoMinimo());
+        System.out.println("Your status level: " + jogador.getEstatuto());
+
+        if(jogador.getEstatuto() >= novoMebroFamilia.getEstatutoMinimo()){
+            jogador.addMembroFamilia(novoMebroFamilia);
+        }
+
+
+
+
     }
 
 
@@ -302,12 +335,50 @@ public class SimsController {
         Scanner sc = new Scanner(System.in);
         for (dia = 1; dia < 100; dia ++) { //clico de dias
             System.out.println("Dia: " + dia);
+
+            if(dia == 5){
+                System.out.println("Gaomagon ao jaelagon naejot jikagon naejot se citadel se become nykeā giēñrȳī?");
+                System.out.println(" 1 - Kessa nykeā 2 - daor ");
+                System.out.println("Traslated: Do you want to go to the Citadel and become a maester ?");
+                System.out.println("1 - Yes ou 2 - No");
+                int opcao = sc.nextInt();
+                if(opcao == 1){
+                    jogador.setDinheiro(jogador.getDinheiro()-3000);
+                    System.out.println("Aōha debit iksos 3000\n - Tistālior: " + jogador.getDinheiro());
+                    System.out.println("Your debit is 3000 \n - bank: " + jogador.getDinheiro());
+                    jogador.setEducacao(jogador.getEducacao() + 50);
+                    System.out.println(" Aōha education level iksos bē 50");
+                    System.out.println("Your education level is up 50");
+                }
+            }
+
+            if(dia == 1){
+                System.out.println("Do you want to get marry? ");
+                System.out.println("1 - Yes ou 2 - No");
+                int opcao = sc.nextInt();
+                if(opcao == 1){
+                    //listar todos os npc's do jogo
+                    casarComNPC();
+                    casamento(jogador);
+
+
+
+                    //propriedade deve ter capacidade para pelo menos 2 pessoas
+
+                    // adicionar o dinheiro do npc ao jogador
+
+                    //30 por dia
+
+                    //criar opção para adotar
+                }
+            }
+
+
             for (int momentoDia = 1; momentoDia < 5  ; momentoDia++) { //momento do dia, manhã, meio dia, tarde ou noite
                 switch (momentoDia){
                     case 1:
                         detalhesJogador(jogador);
-                        System.out.println("What you wanna do now, right dow? It's morning ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Exibir detalhes do Jogador | 7 - Tirar formação | 8 -  Escolher Profissão | 9 - Visistar Propriedades | 0 - Out  ");
-
+                        System.out.println("It's morning .. What do you want to do right now? \n 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Show Player details | 7 - Study | 8 -  Choose a profession | 9 - Visit Properties | 0 - Out  ");
                         escolhaAtividade = sc.nextInt();
                         momentoAtual(escolhaAtividade, jogador);
 
@@ -346,30 +417,25 @@ public class SimsController {
                             escolhaAtividade = sc.nextInt();
                             momentoAtual(escolhaAtividade, jogador);
                         }*/
-
-
-
-
-
                         break;
                     case 2:
                         interacaoDiaria(jogador);
                         detalhesJogador(jogador);
-                        System.out.println("What you wanna do now, right dow? It's mid-day ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Exibir detalhes do Jogador | 7 - Tirar formação | 8 -  Escolher Profissão | 9 - Visistar Propriedades | 0 - Out  ");
+                        System.out.println("Mid-Day..Lunch Time! What do you want to do right now? \n 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Show Player details | 7 - Study | 8 -  Choose a profession | 9 - Visit Properties | 0 - Out  ");
                         escolhaAtividade = sc.nextInt();
                         momentoAtual(escolhaAtividade, jogador);
                         break;
                     case 3:
                         interacaoDiaria(jogador);
                         detalhesJogador(jogador);
-                        System.out.println("What you wanna do now, right dow? It's afternoon ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Exibir detalhes do Jogador | 7 - Tirar formação | 8 -  Escolher Profissão | 9 - Visistar Propriedades | 0 - Out  ");
+                        System.out.println("Afternoon .. What do you want to do right now? \n 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Show Player details | 7 - Study | 8 -  Choose a profession | 9 - Visit Properties | 0 - Out  ");
                         escolhaAtividade = sc.nextInt();
                         momentoAtual(escolhaAtividade, jogador);
                         break;
                     case 4:
                         interacaoDiaria(jogador);
                         detalhesJogador(jogador);
-                        System.out.println("What you wanna do now, right dow? It's evening ..Do you want to 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Exibir detalhes do Jogador | 7 - Tirar formação | 8 -  Escolher Profissão | 9 - Visistar Propriedades | 0 - Out  ");
+                        System.out.println("Good Night .. What do you want to do right now? \n  1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Show Player details | 7 - Study | 8 -  Choose a profession | 9 - Visit Properties | 0 - Out  ");
                         escolhaAtividade = sc.nextInt();
                         momentoAtual(escolhaAtividade, jogador);
                         break;

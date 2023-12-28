@@ -16,4 +16,8 @@ public class Imovel extends Propriedade {
         System.out.println(" | Capacity of members: " + this.capacidadePessoas);
         System.out.println();
     }
+
+    public int getCapacidadePessoas() {
+        return capacidadePessoas;
+    }
 }

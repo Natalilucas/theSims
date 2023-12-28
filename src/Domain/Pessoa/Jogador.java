@@ -66,6 +66,13 @@ public class Jogador extends Pessoa {
         this.propriedades.add(novaPropriedade);
     }
 
+    public ArrayList<NPC> getFamilia() {
+        return familia;
+    }
+
+    public void addMembroFamilia(NPC novoMembroFamilia){
+        this.familia.add(novoMembroFamilia);
+    }
 
     public void mostrarDetalhes() {
         System.out.println(" | Goal " + this.objetivoVida);
