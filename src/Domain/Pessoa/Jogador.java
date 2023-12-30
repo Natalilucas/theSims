@@ -77,11 +77,11 @@ public class Jogador extends Pessoa {
     public void mostrarDetalhes() {
         System.out.println(" | Goal " + this.objetivoVida);
         System.out.println(" | Your player: " + this.nome);
-        System.out.println(" | Golden bank:" + this.dinheiro);
+        System.out.println(" | Iron Bank:" + this.dinheiro);
         profissaoAtual.imprimirDetalhes();
         System.out.println(" | Sleep need: " + this.necessidadeSono);
         System.out.println(" | Meal need:" + this.necessidadeRefeicao);
-        System.out.println(" | Socialize need: " + this.necessidadeSocial);
+        System.out.println(" | Social need: " + this.necessidadeSocial);
         System.out.println(" | Status: " + this.estatuto);
         System.out.println(" | Education level: " + this.educacao);
 

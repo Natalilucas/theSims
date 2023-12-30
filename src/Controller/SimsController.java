@@ -25,7 +25,7 @@ public class SimsController {
 
     private ArrayList<Profissao> escolherProfissao;
 
-    private ArrayList<NPC> casarNPC;
+    private ArrayList<NPC> obterNPC;
 
     public ArrayList<Propriedade> getCoisasParaComprar() {
         return coisasParaComprar;
@@ -35,8 +35,8 @@ public class SimsController {
         return escolherProfissao;
     }
 
-    public ArrayList<NPC> getCasarNPC() {
-        return casarNPC;
+    public ArrayList<NPC> getNPC() {
+        return obterNPC;
     }
 
     public SimsController() throws FileNotFoundException {
@@ -45,9 +45,13 @@ public class SimsController {
         NPCRepository npcRepository = new NPCRepository("Ficheiros/NPC.csv");
         coisasParaComprar = repositoriodeVendas.getPropriedadesArray();
         escolherProfissao = repositorioProfissao.getProfissaosArray();
-        casarNPC = npcRepository.getNpcArrayList();
+        obterNPC = npcRepository.getNpcArrayList();
     }
 
+    /**
+     * Método para listar somente os imoveis do jogador
+     * @param jogador
+     */
     public void listarPropriedades(Jogador jogador){
         ArrayList<Propriedade> propriedadesDoJogador = new ArrayList<>();
         propriedadesDoJogador = jogador.getPropriedades();
@@ -59,6 +63,26 @@ public class SimsController {
         }
     }
 
+    /**
+     * Método para verificar a capacidade das propriedades comprada por daquele jogador
+     * @param jogador
+     * @return capacidade do imovel
+     */
+    public int capacidadeImovel(Jogador jogador) {
+        int capacidadeTotal = 0;
+
+        for (Propriedade propriedade : jogador.getPropriedades()) {
+            if (propriedade instanceof Imovel) {
+                Imovel imovel = (Imovel) propriedade;
+                capacidadeTotal += imovel.getCapacidadePessoas();
+            }
+        }
+        return capacidadeTotal;
+    }
+
+    /**
+     * Método para imprimir as profissões para que o jogador possa escolher
+     */
     public void imprimirProfissao(){
         for (int i = 0; i < escolherProfissao.size(); i++) {
             System.out.print("Option " + (i+1));
@@ -66,13 +90,28 @@ public class SimsController {
         }
     }
 
+    /**
+     * Método que imprime a lista de npc's para utilizar para o casamento
+     */
     public void casarComNPC(){
-        for (int i = 0; i < casarNPC.size(); i++) {
+        for (int i = 0; i < obterNPC.size(); i++) {
             System.out.print("Bride or Groom " + (i+1) + " : ");
-            casarNPC.get(i).imprimirDetalhes();
+            obterNPC.get(i).imprimirDetalhes();
         }
     }
 
+    public void npcFilhos(){
+        for (int i = 0; i < obterNPC.size(); i++) {
+
+            //colocar condição para imprimir somente os filhos(foreach)
+            obterNPC.get(i).imprimirDetalhes();
+        }
+    }
+
+    /**
+     * Método para imprimir os acessórios do jogador
+     * @param jogador
+     */
     public void listarAcessorios(Jogador jogador){
         ArrayList<Propriedade> acessoriosDoJogador = new ArrayList<>();
         acessoriosDoJogador = jogador.getPropriedades();
@@ -85,6 +124,10 @@ public class SimsController {
         }
     }
 
+    /**
+     * Método para efetuar a ação de vender propriedades(imoveis/carros/acessorios)
+     * @param jogador
+     */
     public void vender(Jogador jogador) {
         Scanner input = new Scanner(System.in);
         int opcao = 0, opcaoCompra = 0;
@@ -256,6 +299,10 @@ public class SimsController {
 
     }
 
+    /**
+     * Método para criar o jogador de acordo com os requisitos minimos
+     * @return jogador
+     */
     public static Jogador criarPessoa() {
         Scanner input = new Scanner(System.in);
 
@@ -268,20 +315,20 @@ public class SimsController {
         Profissao profissao = new Profissao( "null", 0, false, 0, 0);
         int contador, indexObjetivo, counter;
 
-        System.out.println("****************");
-        System.out.println("Welcome to our Game of Thrones");
-        System.out.println("****************");
-        System.out.println("AY, Name you boy/girl. Your king commands you: ");
-        nome = input.next();
 
+        System.out.println("Aye, wright dow your caracters first name: ");
+        nome = input.next();
+        System.out.println("last name: ");
+        input.next();
 
         contador = 1;
         for (Objetivo objetivo : Objetivo.values()) {
-            System.out.println(contador++ + " = " + objetivo);
+            System.out.println(contador++ + ": " + objetivo);
         }
 
         System.out.println("Which one is your goal, choose a number: ");
         indexObjetivo = input.nextInt();
+
 
         if (indexObjetivo >= 1 && indexObjetivo <= Objetivo.values().length) {
             objetivoVida = Objetivo.values()[indexObjetivo - 1];
@@ -296,47 +343,121 @@ public class SimsController {
 
     }
 
+    /**
+     * Método para checar a cada ciclo e aplicar a necessidade de sono, refeicao e interacao social
+     * @param jogador
+     */
     public static void interacaoDiaria(Jogador jogador){
         jogador.setNecessidadeSono(jogador.getNecessidadeSono()-25);
         jogador.setNecessidadeRefeicao(jogador.getNecessidadeRefeicao()-20);
         jogador.setNecessidadeSocial(jogador.getNecessidadeSocial()-15);
     }
 
+    /**
+     * Método para imprimir os detalhes basicos do jogador para cada interação poder saber que está diminuindo
+     * @param jogador
+     */
     public static void detalhesJogador(Jogador jogador){
-        System.out.println(" Sleep: " + jogador.getNecessidadeSono()+ " | Meal: " + jogador.getNecessidadeRefeicao() + "| Social: " + jogador.getNecessidadeSocial());
+        System.out.print("Player " + jogador.getNome());
+        System.out.println(" | Sleep: " + jogador.getNecessidadeSono()+ " | Meal: " + jogador.getNecessidadeRefeicao() + "| Social: " + jogador.getNecessidadeSocial());
     }
 
-    public void casamento(Jogador jogador){
+    /**
+     * Método que imprime as opções de npc para que o usuário case, verifica se o estatuto minimo e a capacidade da casa possa abrigar os dois, e aplica o dinheiro ao jogador,
+     * @param jogador
+     * @return
+     */
+    public boolean casamento(Jogador jogador){
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Which one do you choose? ");
         int opcaoCasamento = sc.nextInt();
-        NPC novoMebroFamilia = this.getCasarNPC().get(opcaoCasamento-1);
+        NPC novoMembroFamilia = this.getNPC().get(opcaoCasamento-1);
 
-        System.out.println("You have choosen: " + novoMebroFamilia);
-        System.out.println("Minimum Status Level Required : " + novoMebroFamilia.getEstatutoMinimo());
+        System.out.print("You have choosen: ");
+        novoMembroFamilia.imprimirDetalhes();
+        System.out.println("Minimum Status Level Required : " + novoMembroFamilia.getEstatutoMinimo());
         System.out.println("Your status level: " + jogador.getEstatuto());
+        int capacidade = capacidadeImovel(jogador);
+        System.out.println("Your house has a place for "+ capacidade);
 
-        if(jogador.getEstatuto() >= novoMebroFamilia.getEstatutoMinimo()){
-            jogador.addMembroFamilia(novoMebroFamilia);
+        if (jogador.getEstatuto() >= novoMembroFamilia.getEstatutoMinimo() && capacidade >= 2){
+            System.out.println("********************************************************  WELCOME TO THE SEPT FOR THE WEEDING ************************************************");
+            System.out.println("In the sight of the Seven, I hereby seal these two souls, binding them as one for eternity. Look upon one another and say the words.");
+            System.out.println("**********************************************************************************************************************************************");
+            jogador.addMembroFamilia(novoMembroFamilia);
+            jogador.setDinheiro(jogador.getDinheiro() + novoMembroFamilia.getDinheiro());
+            System.out.println("Update player information ");
+            jogador.mostrarDetalhes();
+            return true;
+        } else {
+            System.out.println("You do not meet the minimum status level requirement for marriage.");
+            return false;
         }
 
+        //30 por dia
 
-
-
+        //criar opção para adotar
     }
 
-
-    public void cicloVida(Jogador jogador){
-        int cicloAtual, escolhaAtividade, profissaoAtualIndex, dia, changePro;
-        boolean temNivel = false;
-        System.out.println("Now, if you want to complet your player, you may require to pick a profession ..");
+    /**
+     * método para adotar, ainda não finalizado.
+     * @param jogador
+     */
+    public void adotar(Jogador jogador){
+        int opcao;
+        int capacidade = capacidadeImovel(jogador);
 
         Scanner sc = new Scanner(System.in);
-        for (dia = 1; dia < 100; dia ++) { //clico de dias
-            System.out.println("Dia: " + dia);
+        System.out.println("Do you want to adopt a little bird?? 1 - Yes or 2 - No");
+        opcao = sc.nextInt();
+        NPC novoMembro = this.getNPC().get(opcao-1);
+        if(opcao == 1){
+            System.out.println("Your house has a place for "+ capacidade);
+            if(capacidade > 3){
+                jogador.addMembroFamilia(novoMembro);
+            }
+        } else {
+            System.out.println("You don't have means to adopt! ");
+        }
+    }
 
-            if(dia == 5){
+    /**
+     * Método para verificar ao fim do jogo, se o jogador atingiu seus objetivos.
+     * Adicionar o restantes das verificações
+     * @param jogador
+     */
+    public void fimDoJogo(Jogador jogador){
+        System.out.println("FIM DO JOGO");
+        double dinheiro = jogador.getDinheiro();
+        Objetivo objetivo = jogador.getObjetivoVida();
+
+        //MILIONARIO, FAMILIACOMPLETA, CELEBRIDADE, KING, LORDCOMMANDER, EUNUCO, NOONE, THEHAND, FIRSTMAN, FREEMAN, UNSULLIED, LORD, LADY, QUEEN, SOLDIER, KINGSGUARD, PROTECTOR
+
+        if(objetivo == Objetivo.MILIONARIO){
+            if(dinheiro > 5){
+                System.out.println("YOU WOON");
+                jogador.mostrarDetalhes();
+            }
+        }
+    }
+
+    /**
+     * método para aplicar o ciclo de vida ao jogador, a cada interação ocorre o método de momentoAtual, que aplica aquilo que o jogador deseja fazer.
+     * @param jogador
+     */
+    public void cicloVida(Jogador jogador){
+        int escolhaAtividade, dia;
+
+        System.out.println("Welcome to the westeros, if you want to become part a great house you must play ...");
+
+        Scanner sc = new Scanner(System.in);
+        for (dia = 1; dia < 3; dia ++) { //clico de dias
+            System.out.println(" ");
+            System.out.println("Dia: " + dia);
+            System.out.println(" ");
+
+            if(dia == 2){
                 System.out.println("Gaomagon ao jaelagon naejot jikagon naejot se citadel se become nykeā giēñrȳī?");
                 System.out.println(" 1 - Kessa nykeā 2 - daor ");
                 System.out.println("Traslated: Do you want to go to the Citadel and become a maester ?");
@@ -352,33 +473,50 @@ public class SimsController {
                 }
             }
 
-            if(dia == 1){
+            if(dia == 3){
                 System.out.println("Do you want to get marry? ");
                 System.out.println("1 - Yes ou 2 - No");
                 int opcao = sc.nextInt();
                 if(opcao == 1){
                     //listar todos os npc's do jogo
                     casarComNPC();
-                    casamento(jogador);
+                    //casar o jogador com algum dos npc
+                    if(casamento(jogador)){
+                        for (int i = 0; i > dia; i++) {
+                            //TÁ MAL = jogador.setDinheiro(jogador.getDinheiro() + 30 * dia);
+                        }
+                        System.out.println("Now that you are married, the small council decide that you'll have a help of 30 per day");
+                        jogador.mostrarDetalhes();
+                    }
 
 
 
-                    //propriedade deve ter capacidade para pelo menos 2 pessoas
-
-                    // adicionar o dinheiro do npc ao jogador
-
-                    //30 por dia
-
-                    //criar opção para adotar
                 }
             }
+
+
+
+
 
 
             for (int momentoDia = 1; momentoDia < 5  ; momentoDia++) { //momento do dia, manhã, meio dia, tarde ou noite
                 switch (momentoDia){
                     case 1:
                         detalhesJogador(jogador);
-                        System.out.println("It's morning .. What do you want to do right now? \n 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Show Player details | 7 - Study | 8 -  Choose a profession | 9 - Visit Properties | 0 - Out  ");
+                        System.out.println("It's morning .. What do you want to do right now?");
+                        System.out.println("| 0 - Out  ");
+                        System.out.println("| 1 - work ");
+                        System.out.println("| 2 - sleep");
+                        System.out.println("| 3 - snack");
+                        System.out.println("| 4 - \\\"playPC\\\", \\\"hobby\\\", talkPeople");
+                        System.out.println("| 5 - goShop");
+                        System.out.println("| 6 - Show Player details ");
+                        System.out.println("| 7 - Study ");
+                        System.out.println("| 8 -  Choose a profession ");
+                        System.out.println("| 9 - Visit Properties");
+                        if(dia >= 22 && dia <= 60){
+                            System.out.print("| 10 - Adopt a child");
+                        }
                         escolhaAtividade = sc.nextInt();
                         momentoAtual(escolhaAtividade, jogador);
 
@@ -421,36 +559,78 @@ public class SimsController {
                     case 2:
                         interacaoDiaria(jogador);
                         detalhesJogador(jogador);
-                        System.out.println("Mid-Day..Lunch Time! What do you want to do right now? \n 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Show Player details | 7 - Study | 8 -  Choose a profession | 9 - Visit Properties | 0 - Out  ");
+                        System.out.println("It's morning .. What do you want to do right now?");
+                        System.out.println("| 0 - Out  ");
+                        System.out.println("| 1 - work ");
+                        System.out.println("| 2 - sleep");
+                        System.out.println("| 3 - snack");
+                        System.out.println("| 4 - \\\"playPC\\\", \\\"hobby\\\", talkPeople");
+                        System.out.println("| 5 - goShop");
+                        System.out.println("| 6 - Show Player details ");
+                        System.out.println("| 7 - Study ");
+                        System.out.println("| 8 -  Choose a profession ");
+                        System.out.println("| 9 - Visit Properties");
+                        if(dia >= 22 && dia <= 60){
+                            System.out.print("| 10 - Adopt a child");
+                        }
                         escolhaAtividade = sc.nextInt();
                         momentoAtual(escolhaAtividade, jogador);
                         break;
                     case 3:
                         interacaoDiaria(jogador);
                         detalhesJogador(jogador);
-                        System.out.println("Afternoon .. What do you want to do right now? \n 1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Show Player details | 7 - Study | 8 -  Choose a profession | 9 - Visit Properties | 0 - Out  ");
+                        System.out.println("It's morning .. What do you want to do right now?");
+                        System.out.println("| 0 - Out  ");
+                        System.out.println("| 1 - work ");
+                        System.out.println("| 2 - sleep");
+                        System.out.println("| 3 - snack");
+                        System.out.println("| 4 - \\\"playPC\\\", \\\"hobby\\\", talkPeople");
+                        System.out.println("| 5 - goShop");
+                        System.out.println("| 6 - Show Player details ");
+                        System.out.println("| 7 - Study ");
+                        System.out.println("| 8 -  Choose a profession ");
+                        System.out.println("| 9 - Visit Properties");
+                        if(dia >= 22 && dia <= 60){
+                            System.out.print("| 10 - Adopt a child");
+                        }
                         escolhaAtividade = sc.nextInt();
                         momentoAtual(escolhaAtividade, jogador);
                         break;
                     case 4:
                         interacaoDiaria(jogador);
                         detalhesJogador(jogador);
-                        System.out.println("Good Night .. What do you want to do right now? \n  1 - work | 2 - sleep | 3 - snack | 4 - talkPeople\", \"playPC\", \"hobby\", 5 - goShop | 6 - Show Player details | 7 - Study | 8 -  Choose a profession | 9 - Visit Properties | 0 - Out  ");
+                        System.out.println("It's morning .. What do you want to do right now?");
+                        System.out.println("| 0 - Out  ");
+                        System.out.println("| 1 - work ");
+                        System.out.println("| 2 - sleep");
+                        System.out.println("| 3 - snack");
+                        System.out.println("| 4 - \\\"playPC\\\", \\\"hobby\\\", talkPeople");
+                        System.out.println("| 5 - goShop");
+                        System.out.println("| 6 - Show Player details ");
+                        System.out.println("| 7 - Study ");
+                        System.out.println("| 8 -  Choose a profession ");
+                        System.out.println("| 9 - Visit Properties");
+                        if(dia >= 22 && dia <= 60){
+                            System.out.print("| 10 - Adopt a child");
+                        }
                         escolhaAtividade = sc.nextInt();
                         momentoAtual(escolhaAtividade, jogador);
                         break;
                 }
             }
-        }
+        } fimDoJogo(jogador);
 
 
 
     }
 
-
+    /**
+     * método que aplica ao ciclo as opções diarias que o jogador pode escolher.
+     * @param momentoAtual
+     * @param jogador
+     */
     public void momentoAtual(int momentoAtual, Jogador jogador) {
         int profissaoAtualIndex, changePro;
-        boolean temNivel = false;
         Scanner sc = new Scanner(System.in);
 
 
@@ -542,7 +722,6 @@ public class SimsController {
 
 
                         if (profissaoEscolhida.getNivelMinimoEducacao() <= jogador.getEducacao() || profissaoEscolhida.getEstatuto() <= jogador.getEstatuto() ) { // || jogador.getPropriedades()
-                            temNivel = true;
                             jogador.setProfissaoAtual(profissaoEscolhida);
                             System.out.println("You want to be " + jogador.getProfissaoAtual().getNome() + ". Grated");
                         } else {
@@ -571,12 +750,15 @@ public class SimsController {
 
                 case 0: //Sair
                     return;
+                case 10:
+                    if(momentoAtual >= 22 && momentoAtual <= 60){
+                        System.out.print("| 10 - Adopt a child ");
+                        adotar(jogador);
+                    }
+                    return;
             }
-        }while (momentoAtual != 0) ;
+        }while (momentoAtual != 0);
     }
+
+
 }
-
-    //Quando desenvolver o casamento, imprimir o NPC todos para o jogador poder selecionar (A casa deve ter capacidade para
-    // pelo menos duas pessoas, a casa que o jogador mora é a casa com maior capacidade de lotação)
-
-

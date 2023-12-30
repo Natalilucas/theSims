@@ -40,14 +40,5 @@ public class CSVNPCReader {
 
     }
 
-    public static void imprimirFicheiro(String caminho) throws FileNotFoundException {
-        Scanner fileScanner = new Scanner(new File(caminho));
-        String linha;
 
-        while (fileScanner.hasNextLine()){
-            linha = fileScanner.nextLine();
-            System.out.println(linha);
-        }
-
-    }
 }

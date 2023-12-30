@@ -15,7 +15,7 @@ public class Veiculo extends Propriedade {
     @Override
     public void imprimirDetalhes() {
         super.imprimirDetalhes();
-        System.out.println("Name: " + this.getNome() + " | Cost: " + this.getCusto() + " | Status: " + this.getEstatuto() + " | Brand: " + this.marca + " | Model: " + this.modelo);
+        System.out.println("Vehicle: " + this.getNome() + " | Cost: " + this.getCusto() + " | Status: " + this.getEstatuto() + " | Brand: " + this.marca + " | Model: " + this.modelo);
         System.out.println();
     }
 }
