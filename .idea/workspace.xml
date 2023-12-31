@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b36e65a7-be06-49c7-85e2-81559ea7270b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/got.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ficheiros/NPC.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Ficheiros/NPC.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SimsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SimsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/Jogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/Jogador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/NPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Propriedade/AcessorioModa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Propriedade/AcessorioModa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Propriedade/Imovel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Propriedade/Imovel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Propriedade/Veiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Propriedade/Veiculo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tools/CSVNPCReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tools/CSVNPCReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/TheSims.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TheSims.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +83,8 @@
       <workItem from="1703670843586" duration="31349000" />
       <workItem from="1703774235887" duration="10582000" />
       <workItem from="1703840225826" duration="25341000" />
-      <workItem from="1703892313346" duration="4847000" />
+      <workItem from="1703892313346" duration="4886000" />
+      <workItem from="1703961629625" duration="20792000" />
     </task>
     <servers />
   </component>
@@ -108,5 +101,26 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
+          <line>401</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
+          <line>163</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
+          <line>177</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

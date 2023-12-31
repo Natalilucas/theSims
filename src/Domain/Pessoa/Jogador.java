@@ -74,6 +74,10 @@ public class Jogador extends Pessoa {
         this.familia.add(novoMembroFamilia);
     }
 
+    public void retirarFilhos(NPC filhos){
+        this.familia.remove(filhos);
+    }
+
     public void mostrarDetalhes() {
         System.out.println(" | Goal " + this.objetivoVida);
         System.out.println(" | Your player: " + this.nome);
