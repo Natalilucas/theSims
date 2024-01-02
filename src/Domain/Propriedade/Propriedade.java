@@ -6,6 +6,13 @@ public class Propriedade {
     private double custo;
     private int estatuto;
 
+
+    /**
+     * construtor do tipo propriedade
+     * @param nome
+     * @param custo
+     * @param estatuto
+     */
     public Propriedade(String nome, double custo, int estatuto) {
         this.nome = nome;
         this.custo = custo;
@@ -24,6 +31,9 @@ public class Propriedade {
         return estatuto;
     }
 
+    /**
+     * metodo para imprimir os detalhes, será sobreescrito
+     */
     public void imprimirDetalhes(){
     }
 

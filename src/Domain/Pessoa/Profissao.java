@@ -44,6 +44,9 @@ public class Profissao {
         return nivelMinimoEducacao;
     }
 
+    /** metodo para imprirmir a profissao do jogador
+     *
+     */
     public void imprimirDetalhes(){
         System.out.println(" | Ocuppation: "+ this.nome + "\t" + "| Wage: " + this.salarioDia + " | Formal: " + this.formal
         + "| Status " + this.estatuto + " | Minimum level education " + this.nivelMinimoEducacao);

@@ -18,6 +18,9 @@ public class AcessorioModa extends Propriedade {
         return formal;
     }
 
+    /**
+     * metodo comum as propriedades para imprimir os detalhes
+     */
     @Override
     public void imprimirDetalhes() {
         super.imprimirDetalhes();

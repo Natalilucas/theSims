@@ -26,18 +26,34 @@ public class SimsController {
 
     private ArrayList<NPC> obterNPC;
 
+    /**
+     * array que traz os itens disponíveis para o shopping
+     * @return
+     */
     public ArrayList<Propriedade> getCoisasParaComprar() {
         return coisasParaComprar;
     }
 
+    /**
+     * array que traz as profissões
+     * @return
+     */
     public ArrayList<Profissao> getEscolherProfissao() {
         return escolherProfissao;
     }
 
+    /**
+     * array que traz todos os npc's
+     * @return
+     */
     public ArrayList<NPC> getNPC() {
         return obterNPC;
     }
 
+    /**
+     * Instaciados o repositorios
+     * @throws FileNotFoundException
+     */
     public SimsController() throws FileNotFoundException {
         PropriedadeRepository repositoriodeVendas = new PropriedadeRepository("Ficheiros/CoisasShopping.csv");
         ProfissoesRepository repositorioProfissao = new ProfissoesRepository("Ficheiros/Profissoes.csv");
@@ -108,6 +124,9 @@ public class SimsController {
         }
     }
 
+    /**
+     * método para listar os filhos
+     */
     public void npcFilhos() {
         ArrayList<NPC> npc = this.getNPC();
         for (int i = 0; i < npc.size(); i++) {
@@ -432,6 +451,11 @@ public class SimsController {
         //criar opção para adotar
     }
 
+    /**
+     * Método para pagar 30 euros por membro , por dia
+     * @param jogador
+     * @param dia
+     */
     public void auxilioSS(Jogador jogador, int dia) {
         if(casou && dia >= 2) {
             jogador.setDinheiro(jogador.getDinheiro() + 30);
@@ -473,7 +497,12 @@ public class SimsController {
         }
     }
 
-    public void pagar10PorMember(Jogador jogador){
+
+    /**
+     * Método que retira 10 € por cada membro adicionado ao jogador, dia
+     * @param jogador
+     */
+    public void gastoPorMembro(Jogador jogador){
         if(jogador.getFamilia().size() >= 1){
             jogador.setDinheiro(jogador.getDinheiro() - ( 10 * jogador.getFamilia().size()));
             System.out.println("As you have been good to the realm bringing us more soldiers, you have a help of 10 coins per member");
@@ -769,7 +798,7 @@ public class SimsController {
             }
 
 
-            pagar10PorMember(jogador);
+            gastoPorMembro(jogador);
 
             for (int momentoDia = 1; momentoDia < 5; momentoDia++) { //momento do dia, manhã, meio dia, tarde ou noite
 

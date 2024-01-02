@@ -74,6 +74,10 @@ public class Jogador extends Pessoa {
         return propriedades;
     }
 
+    /**
+     * metodo para adicionar ao array das propriedades
+     * @param novaPropriedade
+     */
     public void addAPropriedade(Propriedade novaPropriedade) {
         this.propriedades.add(novaPropriedade);
     }
@@ -82,6 +86,10 @@ public class Jogador extends Pessoa {
         return familia;
     }
 
+    /**
+     * metodo que adiciona ao array de familia os npc's
+     * @param novoMembroFamilia
+     */
     public void addMembroFamilia(NPC novoMembroFamilia){
         this.familia.add(novoMembroFamilia);
     }

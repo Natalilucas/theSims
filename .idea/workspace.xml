@@ -9,8 +9,10 @@
       <change beforePath="$PROJECT_DIR$/src/Controller/SimsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SimsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Enum/Objetivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Enum/Objetivo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/Jogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/Jogador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/NPC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/Profissao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/Profissao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Propriedade/AcessorioModa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Propriedade/AcessorioModa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Propriedade/Propriedade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Propriedade/Propriedade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +91,8 @@
       <workItem from="1703961629625" duration="20869000" />
       <workItem from="1704002901849" duration="16938000" />
       <workItem from="1704153747752" duration="692000" />
-      <workItem from="1704154570743" duration="14257000" />
+      <workItem from="1704154570743" duration="14326000" />
+      <workItem from="1704223886946" duration="1625000" />
     </task>
     <servers />
   </component>
@@ -112,22 +115,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
-          <line>164</line>
+          <line>183</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
-          <line>178</line>
+          <line>197</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
-          <line>333</line>
+          <line>352</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
-          <line>447</line>
+          <line>471</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
