@@ -8,6 +8,14 @@ public class Profissao {
     private int estatuto;
     private int nivelMinimoEducacao;
 
+    /**
+     * construtor da profissao
+     * @param nome
+     * @param salarioDia
+     * @param formal
+     * @param estatuto
+     * @param nivelMinimoEducacao
+     */
     public Profissao(String nome, double salarioDia, boolean formal, int estatuto, int nivelMinimoEducacao) {
         this.nome = nome;
         this.salarioDia = salarioDia;

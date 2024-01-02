@@ -17,6 +17,18 @@ public class Jogador extends Pessoa {
     protected ArrayList<Propriedade> propriedades;
     private ArrayList<NPC> familia;
 
+    /**
+     * construtor do tipo jogador
+     * @param nome
+     * @param dinheiro
+     * @param objetivoVida
+     * @param profissaoAtual
+     * @param necessidadeSono
+     * @param necessidadeRefeicao
+     * @param necessidadeSocial
+     * @param estatuto
+     * @param educacao
+     */
     public Jogador(String nome, double dinheiro, Objetivo objetivoVida, Profissao profissaoAtual, int necessidadeSono, int necessidadeRefeicao, int necessidadeSocial, int estatuto, int educacao) {
         super(nome, dinheiro);
         this.objetivoVida = objetivoVida;
@@ -78,6 +90,9 @@ public class Jogador extends Pessoa {
         this.familia.remove(filhos);
     }
 
+    /**
+     * metodo comum a todas as classes do tipo pessoa para imprimir as informações
+     */
     public void mostrarDetalhes() {
         System.out.println(" | Goal " + this.objetivoVida);
         System.out.println(" | Your player: " + this.nome);
@@ -135,4 +150,6 @@ public class Jogador extends Pessoa {
     public void setFamilia(ArrayList<NPC> familia) {
         this.familia = familia;
     }
+
+
 }
