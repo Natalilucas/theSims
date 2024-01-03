@@ -525,7 +525,7 @@ public class SimsController {
 
 
         switch (objetivo){
-            case objetivo.FAMILIACOMPLETA:
+            case FAMILIACOMPLETA:
                 if (jogador.getFamilia().size() > 5 && dinheiro > 0) {
                     System.out.println("YOU WOON");
                     System.out.println("__________________________________________ ");
@@ -533,7 +533,7 @@ public class SimsController {
                     System.out.println("__________________________________________ ");
                 }
 
-            case objetivo.MILIONARIO:
+            case MILIONARIO:
                 double valorTotalPropriedades = 0;
 
                 for (Propriedade todasPropriedades: jogador.getPropriedades()) {
@@ -549,7 +549,7 @@ public class SimsController {
                 System.out.println("€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€");
             }
 
-            case objetivo.CELEBRIDADE:
+            case CELEBRIDADE:
                 if(jogador.getEstatuto() > 200){
                     System.out.println("€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€");
                     System.out.println("YOU WOON");
@@ -560,7 +560,7 @@ public class SimsController {
                     jogador.mostrarDetalhes();
                     System.out.println("__________________________________________ ");
                 }
-            case objetivo.KNIGHT:
+            case KNIGHT:
                 if(jogador.getProfissaoAtual().equals("warrior")){
                     System.out.println("YOU WOON");
                 }
@@ -588,31 +588,37 @@ public class SimsController {
         Scanner sc = new Scanner(System.in);
         int escolhaAtividade;
 
-        if (jogador.getNecessidadeSocial() <= 25) {
+        if (jogador.getNecessidadeSocial() < 25) {
                 do {
                     System.out.println(" ");
+                    System.out.println("**********************************************************************************************************************************************");
                     System.out.println("Mad king send his regards, go heal yourself");
                     System.out.println("While you need to socialize, you only option is nº 4");
+                    System.out.println("**********************************************************************************************************************************************");
                     escolhaAtividade = sc.nextInt();
                 } while (escolhaAtividade != 4);
         }
 
-        if (jogador.getNecessidadeSono() <= 25) {
+        if (jogador.getNecessidadeSono() < 25) {
 
                 do {
                     System.out.println(" ");
+                    System.out.println("**********************************************************************************************************************************************");
                     System.out.println("Shame, shame, shame .. as you didn´t sleep you have your torment");
                     System.out.println("While you need to sleep, you only option is nº 2");
+                    System.out.println("**********************************************************************************************************************************************");
                     escolhaAtividade = sc.nextInt();
                 } while (escolhaAtividade != 2);
         }
 
-        if (jogador.getNecessidadeRefeicao() <= 25) {
+        if (jogador.getNecessidadeRefeicao() < 25) {
 
                 do {
                     System.out.println(" ");
+                    System.out.println("**********************************************************************************************************************************************");
                     System.out.println("Highgarden has some leftovers in the kitchen, go get..");
                     System.out.println("As you really need eat, you only option is nº 3");
+                    System.out.println("**********************************************************************************************************************************************");
                     escolhaAtividade = sc.nextInt();
                 } while (escolhaAtividade != 3);
         }
@@ -784,6 +790,16 @@ public class SimsController {
                 int opcao = sc.nextInt();
                 if (opcao == 1) {
                     //listar todos os npc's do jogo
+                    System.out.println("" +
+                            " __\\/__\n" +
+                            "     //----\\\\         \n" +
+                            "    ||      ||         \n" +
+                            "    ||     _||__         \n" +
+                            "     \\\\___/=//--\\\\\n" +
+                            "       --//-     \\\\\n" +
+                            "         ||      ||\n" +
+                            "          \\\\_____//\n" +
+                            "            -----");
                     casarComNPC();
                     //casar o jogador com algum dos npc
                     casamento(jogador);
@@ -978,6 +994,7 @@ public class SimsController {
                     System.out.println("Player information: ");
                     System.out.println("-----------------------------------------------------------------");
                     jogador.mostrarDetalhes();
+                    System.out.println("-----------------------------------------------------------------");
                     return;
 
                 case 7: //Formação +2
@@ -990,21 +1007,28 @@ public class SimsController {
                     System.out.println(jogador.getEducacao());
                     return;
                 case 8: // Escolher a profissão
+                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     escolherProfissao(jogador);
-
+                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     return;
 
                 case 9: //visitar a propriedade
+                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     listarPropriedades(jogador);
+                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     return;
                 case 10:
+                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     trocarProfissão(jogador);
+                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     return;
                 case 11:
+                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     if(dia >= 22 && dia <= 60){
-                        System.out.println("From now on, you have a option, day : 1");
+                        System.out.println("From now on, you have a option, day: ");
                         System.out.println(dia);
                         adotar(jogador);
+                        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                         return;
                     } else {
                         System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -1017,7 +1041,9 @@ public class SimsController {
                 case 0: //Sair
                     return;
                 default:
+                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     System.out.println("Hummm, You don't have much choice, The kingdom is a place with very short options");
+                    System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                     System.out.println();
                     return;
             }

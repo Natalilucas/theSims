@@ -7,12 +7,6 @@
     <list default="true" id="b36e65a7-be06-49c7-85e2-81559ea7270b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SimsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SimsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Enum/Objetivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Enum/Objetivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/Jogador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/Jogador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Pessoa/Profissao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Pessoa/Profissao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Propriedade/AcessorioModa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Propriedade/AcessorioModa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Propriedade/Propriedade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Propriedade/Propriedade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +23,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/openjdk-21.0.1/Contents/Home/lib/src.zip!/java.base/java/lang/Double.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -115,23 +106,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
-          <line>197</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
           <line>352</line>
           <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Controller/SimsController.java</url>
-          <line>471</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
